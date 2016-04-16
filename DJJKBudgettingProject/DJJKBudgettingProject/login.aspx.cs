@@ -33,7 +33,7 @@ namespace DJJKBudgettingProject
                     salt = (string)cmd.ExecuteScalar().ToString().Trim();
                     if (salt != "")
                     {
-                        string queryLogin = "SELECT Count(Username) FROM users WHERE username=@username AND password=@password";
+                        string queryLogin = "SELECT userid FROM users WHERE username=@username AND password=@password";
                         string hashedPassword = Crypto.Hash(password + salt);
                         conn.Close();
                         conn.Open();
@@ -42,11 +42,14 @@ namespace DJJKBudgettingProject
                         cmd.Parameters.AddWithValue("@password", hashedPassword);
                         int result = (int)cmd.ExecuteScalar();
                         if (result > 0)
+                        {
+                            Session["userid"] = result;
                             return true;
+                        }
                         else
                             return false;
                     }
-                } catch (Exception e)
+                } catch (Exception excep)
                 {
                 }
                 return false;
@@ -69,7 +72,7 @@ namespace DJJKBudgettingProject
                     lblResult.Text = "Invalid Username or Password";
                 }
             }
-            else
+             else
             {
                 lblResult.Text = "Please enter a Username/Password.";
             }

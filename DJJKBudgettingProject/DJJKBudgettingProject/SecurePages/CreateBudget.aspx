@@ -24,10 +24,10 @@
         <br />
         How much do you want to save:<asp:TextBox ID="txtSave" runat="server"></asp:TextBox>
         <br />
-        Budget Start Date:<asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+        Budget Start Date:<asp:Calendar ID="calendarStart" runat="server"></asp:Calendar>
         <br />
         Budget End Date:
-        <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calendarEnd" runat="server"></asp:Calendar>
         <br />
         <asp:Button ID="btnCreate" runat="server" Text="Create!" OnClick="btnCreate_Click" />
         <br />

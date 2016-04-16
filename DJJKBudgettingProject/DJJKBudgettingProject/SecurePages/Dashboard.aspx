@@ -19,11 +19,13 @@
         <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
             Welcome to My Dashboard.</h2>
         <p>
-            <asp:Button ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Create a Budget" />
-            Select a Budget:<asp:ListBox ID="ListBox1" runat="server" DataSourceID="UserBudgets" DataTextField="name" DataValueField="budgetid"></asp:ListBox>
-            <asp:SqlDataSource ID="UserBudgets" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT Users.username, Budget.name, Budget.budgetid FROM Budget INNER JOIN Users ON Budget.userid = Users.userid WHERE (Users.username = @username)">
+            <asp:Button ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Create a Budget" PostBackUrl="~/SecurePages/CreateBudget.aspx" />
+            Select a Budget:<asp:ListBox ID="listBoxBudgets" runat="server" DataSourceID="UserBudgets" DataTextField="name" DataValueField="budgetid" AutoPostBack="True">
+                <asp:ListItem Value="-1">Select a Budget</asp:ListItem>
+            </asp:ListBox>
+            <asp:SqlDataSource ID="UserBudgets" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT Budget.name, Budget.budgetid FROM Budget WHERE (Budget.userid = @userid)">
                 <SelectParameters>
-                    <asp:FormParameter DefaultValue="null" FormField="username" Name="username" />
+                    <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </p>
