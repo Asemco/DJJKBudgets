@@ -19,7 +19,7 @@
         Last Name:<asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
         <br />
         Username:<asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
-        <asp:Label ID="lblUsername" runat="server"></asp:Label>
+        <asp:Button ID="btnVerify" runat="server" OnClick="btnVerify_Click" Text="Verify" />
         <br />
         Password:<asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
         <br />

@@ -13,8 +13,6 @@ namespace DJJKBudgettingProject.SecurePages
 {
     public partial class CreateBudget : System.Web.UI.Page
     {
-
-        string cs = index.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,43 +22,53 @@ namespace DJJKBudgettingProject.SecurePages
         {
             string budgetName = txtName.Text;
             string budgetDescription = txtDescription.Text;
+            decimal budgetSaving;
+            string startDate = calendarStart.SelectedDate.ToShortDateString();
+            string endDate = calendarEnd.SelectedDate.ToShortDateString();
             budgetName = budgetName.Trim();
             budgetDescription = budgetDescription.Trim();
-            
-            if (budgetName.Length > 0 || budgetDescription.Length > 0)
+            try
             {
-                string query = "INSERT INTO budget ( VALUES (";
-                //using (SqlConnection conn = new SqlConnection(cs))
-                //{
-                //    SqlCommand cmd = new SqlCommand(query, conn);
-                //    conn.Open();
-                //    cmd.Parameters.AddWithValue("@username", username);
+                budgetSaving = Convert.ToDecimal(txtSave.Text);
+            }
+            catch (Exception excep)
+            {
+                lblResult.Text = "Incorrect savings amount!  Please enter how much you'd like to save as a number.";
+                return;
+            }
 
-                //    string salt = "";
-                //    try
-                //    {
-                //        salt = (string)cmd.ExecuteScalar().ToString().Trim();
-                //        if (salt != "")
-                //        {
-                //            string queryLogin = "SELECT Count(Username) FROM users WHERE username=@username AND password=@password";
-                //            string hashedPassword = Crypto.Hash(password + salt);
-                //            conn.Close();
-                //            conn.Open();
-                //            cmd = new SqlCommand(queryLogin, conn);
-                //            cmd.Parameters.AddWithValue("@username", username);
-                //            cmd.Parameters.AddWithValue("@password", hashedPassword);
-                //            int result = (int)cmd.ExecuteScalar();
-                //            if (result > 0)
-                //                return true;
-                //            else
-                //                return false;
-                //        }
-                //    }
-                //    catch (Exception e)
-                //    {
-                //    }
-                //    return false;
-                //}
+            if (budgetName.Length > 0)
+            {
+                if (budgetDescription.Length > 0)
+                {
+                    if (startDate != "0001-01-01")
+                    {
+                        if (endDate != "0001-01-01" && endDate.CompareTo(startDate) > 0)
+                        {
+                            int result = DBFactory.CreateBudget((int)Session["userid"], budgetName, budgetDescription, budgetSaving, startDate, endDate);
+                            if (result > 0)
+                                lblResult.Text = "Budget inserted correctly!";
+                            else
+                                lblResult.Text = "Budget was not inserted.";
+                        }
+                        else
+                        {
+                            lblResult.Text = "You must set an end date that's later than the start date of your budget.";
+                        }
+                    }
+                    else
+                    {
+                        lblResult.Text = "You must set a start date for your budget. ";
+                    }
+                }
+                else
+                {
+                    lblResult.Text = "You must set a Budget Description!";
+                }
+            }
+            else
+            {
+                lblResult.Text = "You must set a Budget Name!";
             }
         }
     }

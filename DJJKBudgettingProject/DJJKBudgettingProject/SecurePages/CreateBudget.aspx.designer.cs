@@ -76,22 +76,22 @@ namespace DJJKBudgettingProject.SecurePages {
         protected global::System.Web.UI.WebControls.TextBox txtSave;
         
         /// <summary>
-        /// Calendar1 control.
+        /// calendarStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.Calendar calendarStart;
         
         /// <summary>
-        /// Calendar2 control.
+        /// calendarEnd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
+        protected global::System.Web.UI.WebControls.Calendar calendarEnd;
         
         /// <summary>
         /// btnCreate control.
