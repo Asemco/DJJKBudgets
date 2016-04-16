@@ -20,8 +20,7 @@
             Welcome to My Dashboard.</h2>
         <p>
             <asp:Button ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Create a Budget" PostBackUrl="~/SecurePages/CreateBudget.aspx" />
-            Select a Budget:<asp:ListBox ID="listBoxBudgets" runat="server" DataSourceID="UserBudgets" DataTextField="name" DataValueField="budgetid" AutoPostBack="True">
-                <asp:ListItem Value="-1">Select a Budget</asp:ListItem>
+            Select a Budget:<asp:ListBox ID="listBoxBudgets" runat="server" DataSourceID="UserBudgets" DataTextField="name" DataValueField="budgetid">
             </asp:ListBox>
             <asp:SqlDataSource ID="UserBudgets" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT Budget.name, Budget.budgetid FROM Budget WHERE (Budget.userid = @userid)">
                 <SelectParameters>

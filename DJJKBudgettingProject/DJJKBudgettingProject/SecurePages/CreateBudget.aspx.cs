@@ -13,8 +13,6 @@ namespace DJJKBudgettingProject.SecurePages
 {
     public partial class CreateBudget : System.Web.UI.Page
     {
-
-        string cs = index.cs;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -47,28 +45,11 @@ namespace DJJKBudgettingProject.SecurePages
                     {
                         if (endDate != "0001-01-01" && endDate.CompareTo(startDate) > 0)
                         {
-                            string query = "INSERT INTO budget (userid, name, description, saving, start_date, end_date) " +
-                                           "VALUES (@userid, @name, @description, @saving, @start_date, @end_date)";
-                            using (SqlConnection conn = new SqlConnection(cs))
-                            {
-                                SqlCommand cmd = new SqlCommand(query, conn);
-                                conn.Open();
-                                cmd.Parameters.AddWithValue("@userid", Session["userid"]);
-                                cmd.Parameters.AddWithValue("@name", budgetName);
-                                cmd.Parameters.AddWithValue("@description", budgetDescription);
-                                cmd.Parameters.AddWithValue("@saving", budgetSaving);
-                                cmd.Parameters.AddWithValue("@start_date", startDate);
-                                cmd.Parameters.AddWithValue("@end_date", endDate);
-
-                                int result = (int)cmd.ExecuteNonQuery();
-                                if (result > 0)
-                                {
-                                    lblResult.Text = "Budget inserted correctly!";
-                                    return;
-                                }
-                                else
-                                    lblResult.Text = "Budget was not inserted.";
-                            }
+                            int result = DBFactory.CreateBudget((int)Session["userid"], budgetName, budgetDescription, budgetSaving, startDate, endDate);
+                            if (result > 0)
+                                lblResult.Text = "Budget inserted correctly!";
+                            else
+                                lblResult.Text = "Budget was not inserted.";
                         }
                         else
                         {

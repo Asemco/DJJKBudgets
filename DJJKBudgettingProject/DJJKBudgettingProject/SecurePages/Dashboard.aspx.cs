@@ -14,8 +14,9 @@ namespace FormsAuthenticationExample.SecurePages
         {
             if (!IsPostBack)
             {
-                ListItem listItem = new ListItem("Select a Budget", "-1");
-                listBoxBudgets.Items.Insert(0, listItem);
+                //Automatically filled through the datasource so this doesn't work.
+                //ListItem listItem = new ListItem("Select a Budget", "-1");
+                //listBoxBudgets.Items.Insert(0, listItem);
             }
             
         }
