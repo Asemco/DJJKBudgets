@@ -30,7 +30,7 @@ namespace DJJKBudgettingProject
                 }
                 else
                 {
-                    lblResult.Text = "Invalid Username or Password";
+                    lblResult.Text = "Invalid Username or Password. userid = " + userid;
                 }
             }
              else
