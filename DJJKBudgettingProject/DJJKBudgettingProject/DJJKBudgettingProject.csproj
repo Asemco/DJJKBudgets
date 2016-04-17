@@ -94,11 +94,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="default.aspx" />
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
     <Content Include="SecurePages\Web.config" />
+    <Content Include="_css\material-common.css" />
     <Content Include="_css\material.min.css" />
     <Content Include="_js\jquery-2.2.3.min.js" />
+    <Content Include="_js\loginmessage.js" />
     <Content Include="_js\material.min.js" />
     <Content Include="Material.Master" />
     <None Include="Web.Debug.config">
@@ -123,6 +126,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forgotPassword.aspx.cs">
       <DependentUpon>forgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
