@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 using System.Configuration;
 using System.Web.Helpers;
 
 namespace DJJKBudgettingProject
 {
-    class DBFactory
+    internal class DBFactory
     {
         public static string cs = ConfigurationManager.ConnectionStrings["cs_Budget"].ConnectionString;
 
@@ -256,6 +257,7 @@ namespace DJJKBudgettingProject
 
         ////////////////////* TRANSACTION METHODS */
 
+
         public static int CreateTransaction(int budgetid, int categoryid, string name, string description, decimal amount, string datespent)
         {
             string query = "INSERT INTO transactions (budgetid, categoryid, name, description, amount, datespent) " +
@@ -273,6 +275,73 @@ namespace DJJKBudgettingProject
 
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Method to get all transactions made for a single budget.  Returns: Filled DataSet or empty DataSet, if Unsuccessful
+        /// </summary>
+        /// <param name="budgetid">int</param>
+        /// <returns>Filled DataSet or empty DataSet, if Unsuccessful</returns>
+        public static DataSet GetTransaction(int budgetid)
+        {
+            string query = "SELECT * FROM transactions WHERE budgetid=@budgetid";
+            DataSet ds = new DataSet();
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@budgetid", budgetid);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+            }
+            return ds;
+        }
+
+        /// <summary>
+        /// Method to get a single transcation.  Returns: Filled DataRow or empty DataRow, if Unsuccessful
+        /// </summary>
+        /// <param name="budgetid">int</param>
+        /// <param name="transactionid">int</param>
+        /// <returns>Filled DataRow or empty DataRow, if Unsuccessful</returns>
+        public static DataRow GetTransaction(int budgetid, int transactionid)
+        {
+            string query = "SELECT * FROM transactions WHERE transactionid=@transactionid";
+            DataSet ds = new DataSet();
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@transactionid", transactionid);
+
+                try {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    return ds.Tables[0].Rows[0];
+                }
+                catch (Exception excep)
+                {
+                    // Non-existant transaction was attempted to be selected.
+                }
+            }
+            return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+        }
+
+        /// <summary>
+        /// Method used to delete a particular transaction.  Returns: 1 or 0, if unsuccessful.
+        /// </summary>
+        /// <param name="transactionid">int</param>
+        /// <returns>1 or 0, if unsuccessful.</returns>
+        public static int DeleteTranscation(int transactionid)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM transactions WHERE transactionid=@transactionid";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@transactionid", transactionid);
+
+                return cmd.ExecuteNonQuery();
+            }
+            return 0;
         }
     }
 }
