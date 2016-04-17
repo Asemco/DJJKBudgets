@@ -231,7 +231,7 @@ namespace DJJKBudgettingProject
                 cmd.Parameters.AddWithValue("@start_date", startDate);
                 cmd.Parameters.AddWithValue("@end_date", endDate);
 
-                return (int)cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
         }
 
@@ -254,5 +254,25 @@ namespace DJJKBudgettingProject
             return 0;
         } 
 
+        ////////////////////* TRANSACTION METHODS */
+
+        public static int CreateTransaction(int budgetid, int categoryid, string name, string description, decimal amount, string datespent)
+        {
+            string query = "INSERT INTO transactions (budgetid, categoryid, name, description, amount, datespent) " +
+                                           "VALUES (@budgetid, @categoryid, @name, @description, @amount, @datespent)";
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@budgetid", budgetid);
+                cmd.Parameters.AddWithValue("@categoryid", categoryid);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@description", description);                
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@datespent", datespent);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
