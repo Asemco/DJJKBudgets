@@ -31,7 +31,7 @@ namespace DJJKBudgettingProject
                 string salt = "";
                 try
                 {
-                    salt = (string)cmd.ExecuteScalar().ToString();
+                    salt = (string)cmd.ExecuteScalar().ToString().Trim();
                     if (salt != "")
                     {
                         string queryLogin = "SELECT userid FROM users WHERE username=@username AND password=@password";
@@ -52,6 +52,7 @@ namespace DJJKBudgettingProject
                 }
                 catch (Exception excep)
                 {
+                    
                 }
                 return 0;
             }
@@ -84,6 +85,25 @@ namespace DJJKBudgettingProject
 
                 return (int)cmd.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Method used to delete a budget. Returns: 1 or 0, if unsuccessful.
+        /// </summary>
+        /// <param name="budgetid">int</param>
+        /// <returns>1 or 0, if unsuccessful.</returns>
+        public static int DeleteBudget(int budgetid)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM budget WHERE budgetid=@budgetid";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@budgetid", budgetid);
+
+                return cmd.ExecuteNonQuery();
+            }
+            return 0;
         }
 
         /// <summary>
@@ -140,13 +160,13 @@ namespace DJJKBudgettingProject
         }
 
         /// <summary>
-        /// Method to check if the user exists.  Returns: 1 or 0, if unsuccessful.
+        /// Method to check if the user exists.  Returns: 0 or 1, if unsuccessful.
         /// </summary>
         /// <param name="username">string</param>
-        /// <returns>1 or 0, if unsuccessful.</returns>
+        /// <returns>0 or 1, if unsuccessful.</returns>
         public static int DoesUserExist(string username)
         {
-            string query = "SELECT count(*) FROM Users WHERE username=@username";
+            string query = "SELECT count(userid) FROM Users WHERE username=@username";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -155,7 +175,7 @@ namespace DJJKBudgettingProject
                 cmd.Parameters.AddWithValue("@username", username);
                 return (int)cmd.ExecuteScalar();
             }
-            return 0;
+            return 1;
         }
 
         /// <summary>
@@ -229,5 +249,6 @@ namespace DJJKBudgettingProject
             }
             return 0;
         }
+
     }
 }

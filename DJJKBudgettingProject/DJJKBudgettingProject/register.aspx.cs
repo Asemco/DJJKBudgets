@@ -68,7 +68,7 @@ namespace DJJKBudgettingProject
                 {
                     if (DBFactory.RegisterUser(username, password, email, firstName, lastName, income, payFrequency) > 0)
                     {
-
+                        Server.Transfer("~/login.aspx");
                     }
                     else
                     {
@@ -82,14 +82,15 @@ namespace DJJKBudgettingProject
         protected void btnVerify_Click(object sender, EventArgs e)
         {
             int verify = DBFactory.DoesUserExist(txtUsername.Text);
-            if (verify > 0)
+            if (verify == 0)
             {
-                lblResult.Text = "Username is available!";
+                lblResult.Text = "Username is available! verify = " + verify;
                 Cache["verified"] = true;
             }
             else
             {
                 lblResult.Text = "The username is not available.";
+                Cache["verified"] = false;
             }
         }
     }
