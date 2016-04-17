@@ -252,8 +252,7 @@ namespace DJJKBudgettingProject
                 return cmd.ExecuteNonQuery();
             }
             return 0;
-        }
+        } 
 
-        public static 
     }
 }
