@@ -97,9 +97,16 @@
     <Content Include="App_Data\Budget_log.ldf">
       <DependentUpon>Budget.mdf</DependentUpon>
     </Content>
+    <Content Include="default.aspx" />
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
     <Content Include="SecurePages\Web.config" />
+    <Content Include="_css\material-common.css" />
+    <Content Include="_css\material.min.css" />
+    <Content Include="_js\jquery-2.2.3.min.js" />
+    <Content Include="_js\loginmessage.js" />
+    <Content Include="_js\material.min.js" />
+    <Content Include="material.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,6 +126,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forgotPassword.aspx.cs">
       <DependentUpon>forgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,6 +153,13 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="material.Master.cs">
+      <DependentUpon>material.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="material.Master.designer.cs">
+      <DependentUpon>material.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
