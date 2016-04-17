@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Material.Master.cs">
       <DependentUpon>Material.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Material.Master.designer.cs">
       <DependentUpon>Material.Master</DependentUpon>
