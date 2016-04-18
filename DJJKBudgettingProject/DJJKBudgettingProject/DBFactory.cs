@@ -10,20 +10,19 @@ using System.Web.Helpers;
 
 namespace DJJKBudgettingProject
 {
-    internal class DBFactory
+    public class DBFactory
     {
-
         public static string cs = ConfigurationManager.ConnectionStrings["cs_Budget"].ConnectionString;
 
         /////////////////////* USER METHODS */
-        internal class Users
+        public class Users
         {
             /// <summary>
             /// Method used to get the User ID.  Returns: UserID or 0, if Unsuccessful.
             /// </summary>
             /// <param name="username">string</param>
             /// <returns>UserID or 0, if Unsuccessful.</returns>
-            public static int GetUserId(string username)
+            public int GetUserId(string username)
             {
                 string query = "SELECT userid FROM users WHERE username=@username";
                 using (SqlConnection conn = new SqlConnection(cs))
@@ -42,7 +41,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="userid">int</param>
             /// <returns>Filled DataRow or empty DataRow, if Unsuccessful.</returns>
-            public static DataRow GetUserById(int userid)
+            public DataRow GetUserById(int userid)
             {
                 string query = "SELECT * FROM users WHERE userid=@userid";
                 DataSet ds = new DataSet();
@@ -71,7 +70,7 @@ namespace DJJKBudgettingProject
             /// <param name="username">string</param>
             /// <param name="password">string</param>
             /// <returns>UserID or 0, if Unsuccessful.</returns>
-            public static int LoginUser(string username, string password)
+            public int LoginUser(string username, string password)
             {
                 string query = "SELECT salt FROM users WHERE username=@username";
                 using (SqlConnection conn = new SqlConnection(cs))
@@ -115,7 +114,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="username">string</param>
             /// <returns>Secret Question or null, if Unsuccessful.</returns>
-            public static string GetSecretQuestion(string username)
+            public string GetSecretQuestion(string username)
             {
                 string query = "SELECT question FROM Users WHERE username=@username";
 
@@ -134,7 +133,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="username">string</param>
             /// <returns>0 or 1, if Unsuccessful.</returns>
-            public static int DoesUserExist(string username)
+            public int DoesUserExist(string username)
             {
                 if (string.IsNullOrWhiteSpace(username))
                     return 1;
@@ -155,7 +154,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="user">A filled User object.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int InsertUser(User user)
+            public int InsertUser(User user)
             {
                 string query = "INSERT INTO Users (username, password, email, firstname, lastname, salt, income, payfrequency) " +
                     "VALUES (@username, @password, @email, @firstname, @lastname, @salt, @income, @payfrequency);";
@@ -183,7 +182,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="userid"></param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int DeleteUser(int userid)
+            public int DeleteUser(int userid)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -202,7 +201,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="user">All except Username, Salt and Password.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int UpdateUser(User user)
+            public int UpdateUser(User user)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -233,7 +232,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="user">Required: Username, Password</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int UpdateUserPassword(User user)
+            public int UpdateUserPassword(User user)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -258,15 +257,16 @@ namespace DJJKBudgettingProject
             }
 
         }
+
         /////////////////////* BUDGET METHODS */
-        internal class Budgets
+        public class Budgets
         {
             /// <summary>
             /// Method to get all budgets.  Returns: Filled DataSet or empty DataSet, if Unsuccessful.
             /// </summary>
             /// <param name="userid">int</param>
             /// <returns>Filled DataSet or empty DataSet, if Unsuccessful.</returns>
-            public static DataSet GetBudgets(int userid)
+            public DataSet GetBudgets(int userid)
             {
                 string query = "SELECT * FROM budget WHERE userid=@userid";
                 DataSet ds = new DataSet();
@@ -286,7 +286,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="budgetid">int</param>
             /// <returns>Filled DataRow or empty DataRow, if Unsuccessful.</returns>
-            public static DataRow GetBudgetById(int budgetid)
+            public DataRow GetBudgetById(int budgetid)
             {
                 string query = "SELECT * FROM budget WHERE budgetid=@budgetid";
                 DataSet ds = new DataSet();
@@ -314,7 +314,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="budget">A Filled Budget object.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int InsertBudget(Budget budget)
+            public int InsertBudget(Budget budget)
             {
                 string query = "INSERT INTO budget (userid, name, description, saving, start_date, end_date) " +
                                                "VALUES (@userid, @name, @description, @saving, @start_date, @end_date)";
@@ -338,7 +338,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="budgetid">int</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int DeleteBudget(int budgetid)
+            public int DeleteBudget(int budgetid)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -357,7 +357,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="budget">A Filled Budget object.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int UpdateBudget(Budget budget)
+            public int UpdateBudget(Budget budget)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -385,15 +385,16 @@ namespace DJJKBudgettingProject
             }
 
         }
-        ////////////////////* TRANSACTION METHODS */
-        internal class Transactions
+
+        /////////////////////* TRANSACTION METHODS */
+        public class Transactions
         {
             /// <summary>
             /// Method to get all transactions.  Returns: Filled DataSet or empty DataSet, if Unsuccessful.
             /// </summary>
             /// <param name="userid">int</param>
             /// <returns>Filled DataSet or empty DataSet, if Unsuccessful.</returns>
-            public static DataSet GetTransactions(int userid)
+            public DataSet GetTransactions(int userid)
             {
                 string query = "SELECT * FROM transactions WHERE userid=@userid";
                 DataSet ds = new DataSet();
@@ -413,7 +414,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="transactionid">int</param>
             /// <returns>Filled DataRow or empty DataRow, if Unsuccessful.</returns>
-            public static DataRow GetTransactionById(int transactionid)
+            public DataRow GetTransactionById(int transactionid)
             {
                 string query = "SELECT * FROM transactions WHERE transactionid=@transactionid";
                 DataSet ds = new DataSet();
@@ -441,7 +442,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="trans">A Filled Transaction object.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int InsertTransaction(Transaction trans)
+            public int InsertTransaction(Transaction trans)
             {
                 string query = "INSERT INTO transactions (userid, categoryid, name, description, amount, datespent) " +
                                                "VALUES (@userid, @categoryid, @name, @description, @amount, @datespent)";
@@ -465,7 +466,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="transactionid">int</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int DeleteTranscation(int transactionid)
+            public int DeleteTranscation(int transactionid)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -484,7 +485,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="trans">A Filled Transaction object.</param>
             /// <returns>1 or 0, if Unsuccessful.</returns>
-            public static int UpdateTransaction(Transaction trans)
+            public int UpdateTransaction(Transaction trans)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -511,14 +512,15 @@ namespace DJJKBudgettingProject
                 return 0;
             }
         }
+
         /////////////////////* CATEGORY METHODS */
-        internal class Categories
+        public class Categories
         {
             /// <summary>
             /// Method to get all categories.  Returns: Filled DataSet or empty DataSet, if Unsuccessful.
             /// </summary>
             /// <returns>Filled DataSet or empty DataSet, if Unsuccessful.</returns>
-            public static DataSet GetCategories()
+            public DataSet GetCategories()
             {
                 string query = "SELECT * FROM category";
                 DataSet ds = new DataSet();
@@ -536,7 +538,7 @@ namespace DJJKBudgettingProject
             /// </summary>
             /// <param name="categoryid">int</param>
             /// <returns>Filled DataRow or empty DataRow, if Unsuccessful.</returns>
-            public static DataRow GetCategoryById(int categoryid)
+            public DataRow GetCategoryById(int categoryid)
             {
                 string query = "SELECT * FROM category WHERE categoryid=@categoryid";
                 DataSet ds = new DataSet();

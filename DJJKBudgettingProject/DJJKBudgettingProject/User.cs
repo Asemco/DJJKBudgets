@@ -7,7 +7,7 @@ using System.Data;
 
 namespace DJJKBudgettingProject
 {
-    class User
+    public class User
     {
         public int UserId { get; set; }
         public string Username { get; set; }
@@ -27,7 +27,8 @@ namespace DJJKBudgettingProject
         /// <returns>Returns False or True, if Unsuccessful.</returns>
         public bool DoesUserExist()
         {
-            if (DBFactory.Users.DoesUserExist(Username) > 0)
+            DBFactory.Users dbfu = new DBFactory.Users();
+            if (dbfu.DoesUserExist(Username) > 0)
                 return true;
             else
                 return false;
@@ -35,37 +36,44 @@ namespace DJJKBudgettingProject
 
         public int LoginUser()
         {
-            return DBFactory.Users.LoginUser(Username, Password);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.LoginUser(Username, Password);
         }
 
         public int UpdateUserPassword()
         {
-            return DBFactory.Users.UpdateUserPassword(this);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.UpdateUserPassword(this);
         }
 
         public string GetSecretQuestion()
         {
-            return DBFactory.Users.GetSecretQuestion(Username);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.GetSecretQuestion(Username);
         }
 
         public int GetUserId()
         {
-            return DBFactory.Users.GetUserId(Username);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.GetUserId(Username);
         }
 
         public int InsertUser()
         {
-            return DBFactory.Users.InsertUser(this);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.InsertUser(this);
         }
 
         public int UpdateUser()
         {
-            return DBFactory.Users.UpdateUser(this);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.UpdateUser(this);
         }
 
         public int DeleteUser()
         {
-            return DBFactory.Users.DeleteUser(UserId);
+            DBFactory.Users dbfu = new DBFactory.Users();
+            return dbfu.DeleteUser(UserId);
         }
     }
 }

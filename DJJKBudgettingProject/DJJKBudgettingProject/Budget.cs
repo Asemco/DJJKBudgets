@@ -18,27 +18,32 @@ namespace DJJKBudgettingProject
 
         public DataSet GetBudgets()
         {
-            return DBFactory.Budgets.GetBudgets(UserId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.GetBudgets(UserId);
         }
 
         public DataRow GetBudgetById()
         {
-            return DBFactory.Budgets.GetBudgetById(BudgetId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.GetBudgetById(BudgetId);
         }
 
         public int InsertBudget()
         {
-            return DBFactory.Budgets.InsertBudget(this);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.InsertBudget(this);
         }
 
         public int UpdateBudget()
         {
-            return DBFactory.Budgets.UpdateBudget(this);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.UpdateBudget(this);
         }
 
         public int DeleteBudget()
         {
-            return DBFactory.Budgets.DeleteBudget(BudgetId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.DeleteBudget(BudgetId);
         }
     }
 }
