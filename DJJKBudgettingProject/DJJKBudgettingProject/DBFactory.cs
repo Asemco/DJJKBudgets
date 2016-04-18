@@ -272,38 +272,9 @@ namespace DJJKBudgettingProject
                 return cmd.ExecuteNonQuery();
             }
             return 0;
-        } 
+        }
 
         ////////////////////* TRANSACTION METHODS */
-        
-        /// <summary>
-        /// Method to create a transaction.  Returns: 1 or 0, if unsuccessful
-        /// </summary>
-        /// <param name="userid">int</param>
-        /// <param name="categoryid">int</param>
-        /// <param name="name">string</param>
-        /// <param name="description">string</param>
-        /// <param name="amount">decimal</param>
-        /// <param name="datespent">string: YYYY-MM-DD</param>
-        /// <returns></returns>
-        public static int CreateTransaction(int userid, int categoryid, string name, string description, decimal amount, string datespent)
-        {
-            string query = "INSERT INTO transactions (userid, categoryid, name, description, amount, datespent) " +
-                                           "VALUES (@userid, @categoryid, @name, @description, @amount, @datespent)";
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.Parameters.AddWithValue("@userid", userid);
-                cmd.Parameters.AddWithValue("@categoryid", categoryid);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@description", description);                
-                cmd.Parameters.AddWithValue("@amount", amount);
-                cmd.Parameters.AddWithValue("@datespent", datespent);
-
-                return cmd.ExecuteNonQuery();
-            }
-        }
 
         /// <summary>
         /// Method to get all transactions made for a single budget.  Returns: Filled DataSet or empty DataSet, if Unsuccessful
@@ -339,7 +310,8 @@ namespace DJJKBudgettingProject
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@transactionid", transactionid);
 
-                try {
+                try
+                {
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
                     return ds.Tables[0].Rows[0];
@@ -350,6 +322,35 @@ namespace DJJKBudgettingProject
                 }
             }
             return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+        }
+
+        /// <summary>
+        /// Method to create a transaction.  Returns: 1 or 0, if unsuccessful
+        /// </summary>
+        /// <param name="userid">int</param>
+        /// <param name="categoryid">int</param>
+        /// <param name="name">string</param>
+        /// <param name="description">string</param>
+        /// <param name="amount">decimal</param>
+        /// <param name="datespent">string: YYYY-MM-DD</param>
+        /// <returns></returns>
+        public static int InsertTransaction(Transaction trans)
+        {
+            string query = "INSERT INTO transactions (userid, categoryid, name, description, amount, datespent) " +
+                                           "VALUES (@userid, @categoryid, @name, @description, @amount, @datespent)";
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@userid", trans.UserId);
+                cmd.Parameters.AddWithValue("@categoryid", trans.CategoryId);
+                cmd.Parameters.AddWithValue("@name", trans.Name);
+                cmd.Parameters.AddWithValue("@description", trans.Description);                
+                cmd.Parameters.AddWithValue("@amount", trans.Amount);
+                cmd.Parameters.AddWithValue("@datespent", trans.DateSpent);
+
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -370,26 +371,36 @@ namespace DJJKBudgettingProject
             }
             return 0;
         }
-        
-        public static int UpdateTransaction(DataRow dr)
+
+        /// <summary>
+        /// Method to update a particular transaction.  Returns: 1 or 0, if unsuccessful.
+        /// </summary>
+        /// <param name="trans">A Filled Transaction object.</param>
+        /// <returns>1 or 0, if unsuccessful.</returns>
+        public static int UpdateTransaction(Transaction trans)
         {
-            int transactionid = (int)dr[0];
+           
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    string query = "SELECT * FROM transactions WHERE transactionid=@transactionid";
+                    DataSet ds = new DataSet();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@transactionid", trans.TransactionId);
 
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                string query = "SELECT * FROM transactions WHERE transactionid=@transactionid";
-                DataSet ds = new DataSet();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@transactionid", transactionid);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                
-                DataRow temp = ds.Tables[0].Rows[0];
-                temp = dr;
-                SqlCommandBuilder builder = new SqlCommandBuilder(da);
-                return da.Update(ds);
-            }
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    DataRow dr = GetTransactionById(trans.TransactionId);
+                    if (dr != null)
+                    {
+                        dr["categoryid"] = trans.CategoryId;
+                        dr["name"] = trans.Name;
+                        dr["description"] = trans.Description;
+                        dr["amount"] = trans.Amount;
+                        dr["datespent"] = trans.DateSpent;
+                    }
+                    SqlCommandBuilder builder = new SqlCommandBuilder(da);
+                    return da.Update(ds);
+                }
 
             return 0;
         }

@@ -170,6 +170,7 @@
     <Compile Include="SecurePages\UpdateTrans.aspx.designer.cs">
       <DependentUpon>UpdateTrans.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Transaction.cs" />
     <Compile Include="UserControls\HeaderUserControl.ascx.cs">
       <DependentUpon>HeaderUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
