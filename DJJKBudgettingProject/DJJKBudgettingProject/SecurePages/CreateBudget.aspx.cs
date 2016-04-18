@@ -44,7 +44,7 @@ namespace DJJKBudgettingProject.SecurePages
                     {
                         if (budget.End_Date != "0001-01-01" && budget.End_Date.CompareTo(budget.Start_Date) > 0)
                         {
-                            int result = DBFactory.Budgets.InsertBudget(budget);
+                            int result = budget.InsertBudget();
                             if (result > 0)
                                 lblResult.Text = "Budget inserted correctly!";
                             else

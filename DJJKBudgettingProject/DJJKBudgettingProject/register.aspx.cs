@@ -47,7 +47,7 @@ namespace DJJKBudgettingProject
                     return;
                 }
 
-                if (DBFactory.Users.InsertUser(user) > 0)
+                if (user.InsertUser() > 0)
                 {
                     Server.Transfer("~/login.aspx");
                 }
@@ -61,8 +61,10 @@ namespace DJJKBudgettingProject
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {
-            int verify = DBFactory.Users.DoesUserExist(txtUsername.Text);
-            if (verify == 0)
+            User user = new User();
+            user.Username = txtUsername.Text.Trim();
+            bool verify = user.DoesUserExist();
+            if (!verify)
             {
                 lblResult.Text = "The username you have chosen is available!";
                 Cache["verified"] = true;

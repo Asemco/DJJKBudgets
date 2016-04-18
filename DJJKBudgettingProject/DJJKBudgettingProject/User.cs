@@ -21,12 +21,31 @@ namespace DJJKBudgettingProject
         public decimal Income { get; set; }
         public int PayFrequency { get; set; }
 
+        /// <summary>
+        /// Returns False or True, if Unsuccessful.
+        /// </summary>
+        /// <returns>Returns False or True, if Unsuccessful.</returns>
         public bool DoesUserExist()
         {
             if (DBFactory.Users.DoesUserExist(Username) > 0)
                 return true;
             else
                 return false;
+        }
+
+        public int LoginUser()
+        {
+            return DBFactory.Users.LoginUser(Username, Password);
+        }
+
+        public int UpdateUserPassword()
+        {
+            return DBFactory.Users.UpdateUserPassword(this);
+        }
+
+        public string GetSecretQuestion()
+        {
+            return DBFactory.Users.GetSecretQuestion(Username);
         }
 
         public int GetUserId()
