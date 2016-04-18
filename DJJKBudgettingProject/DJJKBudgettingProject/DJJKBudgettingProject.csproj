@@ -52,6 +52,7 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -94,7 +95,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Budget.mdf" />
+    <Content Include="App_Data\Budget_log.ldf">
+      <DependentUpon>Budget.mdf</DependentUpon>
+    </Content>
     <Content Include="default.aspx" />
+    <Content Include="Layouts\ClientsSystem.aspx" />
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
     <Content Include="SecurePages\Web.config" />
@@ -112,10 +118,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Budget.mdf" />
-    <Content Include="App_Data\Budget_log.ldf">
-      <DependentUpon>Budget.mdf</DependentUpon>
-    </Content>
     <Content Include="forgotPassword.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
@@ -146,6 +148,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ClientsSystem.aspx.cs">
+      <DependentUpon>ClientsSystem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ClientsSystem.aspx.designer.cs">
+      <DependentUpon>ClientsSystem.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

@@ -31,7 +31,7 @@ namespace DJJKBudgettingProject
                 string salt = "";
                 try
                 {
-                    salt = (string)cmd.ExecuteScalar().ToString();
+                    salt = (string)cmd.ExecuteScalar().ToString().Trim();
                     if (salt != "")
                     {
                         string queryLogin = "SELECT userid FROM users WHERE username=@username AND password=@password";
