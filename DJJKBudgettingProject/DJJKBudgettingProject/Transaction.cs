@@ -18,7 +18,7 @@ namespace DJJKBudgettingProject
 
         public DataSet GetTransactions()
         {
-            return DBFactory.GetTransaction(UserId);
+            return DBFactory.GetTransactions(UserId);
         }
 
         public DataRow GetTransactionById()
