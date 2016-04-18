@@ -114,6 +114,7 @@
     <Content Include="login.aspx" />
     <Content Include="register.aspx" />
     <Content Include="SecurePages\Dashboard.aspx" />
+    <Content Include="SecurePages\UpdateTrans.aspx" />
     <Content Include="UserControls\HeaderUserControl.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="SecurePages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SecurePages\UpdateTrans.aspx.cs">
+      <DependentUpon>UpdateTrans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecurePages\UpdateTrans.aspx.designer.cs">
+      <DependentUpon>UpdateTrans.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\HeaderUserControl.ascx.cs">
       <DependentUpon>HeaderUserControl.ascx</DependentUpon>

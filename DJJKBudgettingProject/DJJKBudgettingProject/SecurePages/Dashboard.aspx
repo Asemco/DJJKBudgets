@@ -11,9 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
         <uc1:HeaderUserControl ID="HeaderUserControl1" runat="server" />
-    
     </div>
         <h2>
         <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
