@@ -21,7 +21,7 @@ namespace DJJKBudgettingProject
             string password = txtPassword.Text.Trim();
             if (username.Length > 0 && password.Length > 0)
             {
-                int userid = DBFactory.LoginUser(username, password);
+                int userid = DBFactory.Users.LoginUser(username, password);
                 if (userid > 0)
                 {
                     Session["username"] = username;

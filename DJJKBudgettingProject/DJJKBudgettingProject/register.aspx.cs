@@ -18,19 +18,18 @@ namespace DJJKBudgettingProject
         {
             if ((bool)Cache["verified"])
             {
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
-                string email = txtEmail.Text;
-                string firstName = txtFirstName.Text;
-                string lastName = txtLastName.Text;
-                string question = txtQuestion.Text;
-                string answer = txtAnswer.Text;
-                decimal income;
-                decimal payFrequency;
+                User user = new User();
+                user.Username = txtUsername.Text;
+                user.Password = txtPassword.Text;
+                user.Email = txtEmail.Text;
+                user.FirstName = txtFirstName.Text;
+                user.LastName = txtLastName.Text;
+                user.Question = txtQuestion.Text;
+                user.Answer = txtAnswer.Text;
 
                 try
                 {
-                    income = Convert.ToDecimal(txtIncome.Text);
+                    user.Income = Convert.ToDecimal(txtIncome.Text);
                 }
                 catch (Exception excep)
                 {
@@ -40,7 +39,7 @@ namespace DJJKBudgettingProject
 
                 try
                 {
-                    payFrequency = Convert.ToDecimal(txtFrequency.Text);
+                    user.PayFrequency = Convert.ToInt32(txtFrequency.Text);
                 }
                 catch (Exception excep)
                 {
@@ -48,40 +47,21 @@ namespace DJJKBudgettingProject
                     return;
                 }
 
-
-                if (question != "")
+                if (DBFactory.Users.InsertUser(user) > 0)
                 {
-                    if (answer != "")
-                    {
-                        if (DBFactory.RegisterUser(username, password, email, firstName, lastName, income, payFrequency, question, answer) > 0)
-                        {
-                            Server.Transfer("~/login.aspx");
-                        }
-                        else
-                        {
-                            lblResult.Text = "Registration failed.";
-                            lblResult.ForeColor = System.Drawing.Color.Red;
-                        }
-                    }
+                    Server.Transfer("~/login.aspx");
                 }
                 else
                 {
-                    if (DBFactory.RegisterUser(username, password, email, firstName, lastName, income, payFrequency) > 0)
-                    {
-                        Server.Transfer("~/login.aspx");
-                    }
-                    else
-                    {
-                        lblResult.Text = "Registration failed.";
-                        lblResult.ForeColor = System.Drawing.Color.Red;
-                    }
+                    lblResult.Text = "Registration failed.";
+                    lblResult.ForeColor = System.Drawing.Color.Red;
                 }
             }
         }
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {
-            int verify = DBFactory.DoesUserExist(txtUsername.Text);
+            int verify = DBFactory.Users.DoesUserExist(txtUsername.Text);
             if (verify == 0)
             {
                 lblResult.Text = "Username is available! verify = " + verify;

@@ -9,7 +9,7 @@ namespace DJJKBudgettingProject
     public class Budget
     {
         public int BudgetId { get; set; }
-        public int Userid { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Saving { get; set; }
@@ -18,27 +18,27 @@ namespace DJJKBudgettingProject
 
         public DataSet GetBudgets()
         {
-            return DBFactory.GetBudgets(Userid);
+            return DBFactory.Budgets.GetBudgets(UserId);
         }
 
         public DataRow GetBudgetById()
         {
-            return DBFactory.GetBudgetById(BudgetId);
+            return DBFactory.Budgets.GetBudgetById(BudgetId);
         }
 
         public int InsertBudget()
         {
-            return DBFactory.InsertBudget(this);
+            return DBFactory.Budgets.InsertBudget(this);
         }
 
         public int UpdateBudget()
         {
-            return DBFactory.UpdateBudget(this);
+            return DBFactory.Budgets.UpdateBudget(this);
         }
 
         public int DeleteBudget()
         {
-            return DBFactory.DeleteBudget(BudgetId);
+            return DBFactory.Budgets.DeleteBudget(BudgetId);
         }
     }
 }

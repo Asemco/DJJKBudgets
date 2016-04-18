@@ -22,7 +22,10 @@ namespace DJJKBudgettingProject
             {
                 if (txtAnswer.Text.Length > 0)
                 {
-                    if (DBFactory.ResetPassword(txtUsername.Text, txtPassword.Text, txtAnswer.Text) > 0)
+                    User user = new User();
+                    user.Username = txtUsername.Text;
+                    user.Password = txtPassword.Text;
+                    if (DBFactory.Users.UpdateUserPassword(user) > 0)
                     {
                         lblResult.Text = "Successfully reset password!";
                         lblResult.ForeColor = System.Drawing.Color.Green;
@@ -49,7 +52,7 @@ namespace DJJKBudgettingProject
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {
-            string question = DBFactory.GetSecretQuestion(txtUsername.Text);
+            string question = DBFactory.Users.GetSecretQuestion(txtUsername.Text);
             if (question != null)
             {
                 lblQuestion.Text = question;
