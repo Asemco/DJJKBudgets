@@ -29,16 +29,14 @@
 <body id="PageBody" runat="server">
     <form id="form1" runat="server">
         <dialog id="LoginMessage" class="mdl-dialog" runat="server">
-            <div class="mdl-dialog__title">
-                <p>
-                    Login Required
-                </p>
-            </div>
+            <h1 class="mdl-dialog__title">Login Required</h1>
+
             <div class="mdl-dialog__content">
                 <p>
                     A user account is required to use this website.
                 </p>
             </div>
+
             <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
                 <button type="button" onclick="location.href='login.aspx'" class="mdl-button">Login Existing Account</button>
                 <button type="button" onclick="location.href='register.aspx'" class="mdl-button">Register New Account</button>
