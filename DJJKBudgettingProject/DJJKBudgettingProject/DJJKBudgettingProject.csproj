@@ -193,6 +193,7 @@
       <DependentUpon>UpdateTrans.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="UserControls\HeaderUserControl.ascx.cs">
       <DependentUpon>HeaderUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

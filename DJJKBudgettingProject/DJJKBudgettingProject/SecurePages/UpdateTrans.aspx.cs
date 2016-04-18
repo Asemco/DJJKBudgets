@@ -25,16 +25,7 @@ namespace DJJKBudgettingProject
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try {
-                int budgetid = Convert.ToInt32(listBoxBudgets.SelectedItem.Value);
-                DataSet ds = DBFactory.GetTransaction(budgetid);
-                grdTrans.DataSource = ds;
-                grdTrans.DataBind();
-            } catch (Exception excep)
-            {
-
-            }
-
+            
         }
     }
 }
