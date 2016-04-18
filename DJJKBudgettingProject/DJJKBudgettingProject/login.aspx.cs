@@ -12,7 +12,7 @@ namespace DJJKBudgettingProject
     {       
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtUsername.Focus();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace DJJKBudgettingProject
             }
              else
             {
-                lblResult.Text = "Please enter a Username/Password.";
+                lblResult.Text = "Please enter a Username/Password.";                
             }
         }
     }
