@@ -23,6 +23,7 @@ namespace FormsAuthenticationExample.SecurePages
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            
             Session["username"] = null;
             Session["userid"] = null;
             FormsAuthentication.SignOut();
