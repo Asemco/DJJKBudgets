@@ -15,21 +15,20 @@ namespace DJJKBudgettingProject.SecurePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            string budgetName = txtName.Text;
-            string budgetDescription = txtDescription.Text;
-            decimal budgetSaving;
-            string startDate = calendarStart.SelectedDate.ToShortDateString();
-            string endDate = calendarEnd.SelectedDate.ToShortDateString();
-            budgetName = budgetName.Trim();
-            budgetDescription = budgetDescription.Trim();
+
+            Budget budget = new Budget();
+            budget.UserId = (int)Session["userid"];
+            budget.Name = txtName.Text.Trim();
+            budget.Description = txtDescription.Text.Trim();
+            budget.Start_Date = calendarStart.SelectedDate.ToShortDateString();
+            budget.End_Date = calendarEnd.SelectedDate.ToShortDateString();
             try
             {
-                budgetSaving = Convert.ToDecimal(txtSave.Text);
+                budget.Saving = Convert.ToDecimal(txtSave.Text);
             }
             catch (Exception excep)
             {
@@ -37,15 +36,15 @@ namespace DJJKBudgettingProject.SecurePages
                 return;
             }
 
-            if (budgetName.Length > 0)
+            if (budget.Name.Length > 0)
             {
-                if (budgetDescription.Length > 0)
+                if (budget.Description.Length > 0)
                 {
-                    if (startDate != "0001-01-01")
+                    if (budget.Start_Date != "0001-01-01")
                     {
-                        if (endDate != "0001-01-01" && endDate.CompareTo(startDate) > 0)
+                        if (budget.End_Date != "0001-01-01" && budget.End_Date.CompareTo(budget.Start_Date) > 0)
                         {
-                            int result = DBFactory.CreateBudget((int)Session["userid"], budgetName, budgetDescription, budgetSaving, startDate, endDate);
+                            int result = budget.InsertBudget();
                             if (result > 0)
                                 lblResult.Text = "Budget inserted correctly!";
                             else
@@ -69,6 +68,13 @@ namespace DJJKBudgettingProject.SecurePages
             else
             {
                 lblResult.Text = "You must set a Budget Name!";
+            }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownList1.SelectedIndex == 2) {
+
             }
         }
     }

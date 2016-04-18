@@ -18,27 +18,32 @@ namespace DJJKBudgettingProject
 
         public DataSet GetTransactions()
         {
-            return DBFactory.GetTransactions(UserId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.GetTransactions(UserId);
         }
 
         public DataRow GetTransactionById()
         {
-            return DBFactory.GetTransactionById(TransactionId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.GetTransactionById(TransactionId);
         }
 
         public int InsertTransaction()
         {
-            return DBFactory.InsertTransaction(this);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.InsertTransaction(this);
         }
 
         public int UpdateTransaction()
         {
-            return DBFactory.UpdateTransaction(this);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.UpdateTransaction(this);
         }
 
         public int DeleteTransaction()
         {
-            return DBFactory.DeleteTranscation(TransactionId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.DeleteTranscation(TransactionId);
         }
     }
 }
