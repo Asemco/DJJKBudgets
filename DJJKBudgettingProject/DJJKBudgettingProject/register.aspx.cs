@@ -64,12 +64,12 @@ namespace DJJKBudgettingProject
             int verify = DBFactory.Users.DoesUserExist(txtUsername.Text);
             if (verify == 0)
             {
-                lblResult.Text = "Username is available! verify = " + verify;
+                lblResult.Text = "The username you have chosen is available!";
                 Cache["verified"] = true;
             }
             else
             {
-                lblResult.Text = "The username is not available.";
+                lblResult.Text = "The username you have chosen is not available.";
                 Cache["verified"] = false;
             }
         }
