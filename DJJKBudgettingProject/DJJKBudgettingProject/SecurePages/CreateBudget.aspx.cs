@@ -15,7 +15,6 @@ namespace DJJKBudgettingProject.SecurePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -69,6 +68,13 @@ namespace DJJKBudgettingProject.SecurePages
             else
             {
                 lblResult.Text = "You must set a Budget Name!";
+            }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownList1.SelectedIndex == 2) {
+
             }
         }
     }
