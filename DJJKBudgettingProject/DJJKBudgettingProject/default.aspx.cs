@@ -13,7 +13,12 @@ namespace DJJKBudgettingProject
         {
             if (string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
             {
+                // Not logged in.
                 ((HtmlGenericControl)Page.Master.FindControl("PageBody")).Attributes.Add("onload", "showLoginDialog();");
+            }
+            else
+            {
+                
             }
         }
     }

@@ -5,17 +5,17 @@
 <asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Login to DJJK Budgeting</asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
-    <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid">
+    <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <asp:TextBox ID="txtUsername" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-            <label class="mdl-textfield__label" for="txtUsername">Username</label>
+            <label class="mdl-textfield__label" for="ContentBody_txtUsername">Username</label>
         </div>
 
         <br />
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-            <label class="mdl-textfield__label" for="txtPassword">Password</label>
+            <label class="mdl-textfield__label" for="ContentBody_txtPassword">Password</label>
         </div>
 
         <br />

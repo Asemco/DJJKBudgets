@@ -5,5 +5,5 @@
 <asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Dashboard</asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
-    <h1>Hello!</h1>
+
 </asp:Content>
