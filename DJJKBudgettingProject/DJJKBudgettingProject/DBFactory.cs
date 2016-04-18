@@ -325,13 +325,12 @@ namespace DJJKBudgettingProject
             return ds;
         }
 
-        /// <summary>
         /// Method to get a single transcation.  Returns: Filled DataRow or empty DataRow, if Unsuccessful
         /// </summary>
         /// <param name="userid">int</param>
         /// <param name="transactionid">int</param>
         /// <returns>Filled DataRow or empty DataRow, if Unsuccessful</returns>
-        public static DataRow GetTransaction(int userid, int transactionid)
+        public static DataRow GetTransactionById(int transactionid)
         {
             string query = "SELECT * FROM transactions WHERE transactionid=@transactionid";
             DataSet ds = new DataSet();
@@ -388,6 +387,7 @@ namespace DJJKBudgettingProject
                 
                 DataRow temp = ds.Tables[0].Rows[0];
                 temp = dr;
+                SqlCommandBuilder builder = new SqlCommandBuilder(da);
                 return da.Update(ds);
             }
 
