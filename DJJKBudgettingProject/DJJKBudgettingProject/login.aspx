@@ -1,30 +1,25 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="DJJKBudgettingProject.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/material.Master" CodeBehind="login.aspx.cs" Inherits="DJJKBudgettingProject.login" %>
 
-<%@ Register src="UserControls/HeaderUserControl.ascx" tagname="HeaderUserControl" tagprefix="uc1" %>
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">DJJK Budgeting - Login</asp:Content>
 
-<!DOCTYPE html>
+<asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Login to DJJK Budgeting</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-        <uc1:HeaderUserControl ID="HeaderUserControl1" runat="server" />
-    
-        Username:<asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+<asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+    <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+            <asp:TextBox ID="txtUsername" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
+            <label class="mdl-textfield__label" for="ContentBody_txtUsername">Username</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
+            <label class="mdl-textfield__label" for="ContentBody_txtPassword">Password</label>
+        </div>
+
         <asp:Label ID="lblResult" runat="server"></asp:Label>
-        <br />
-        <br />
-        Password:<asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
-        <br />
-        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
-    
-        <br />
-    
+
+        <asp:Button ID="btnLogin" CssClass="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-cell mdl-cell--12-col" runat="server" Text="Login" OnClick="btnLogin_Click" />
+
+        <a href="register.aspx" class="mdl-button mdl-js-button mdl-button--raised mdl-cell mdl-cell--12-col">Register New Account</a>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
