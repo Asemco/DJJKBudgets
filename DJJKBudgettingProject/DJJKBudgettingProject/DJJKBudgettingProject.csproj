@@ -94,6 +94,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Budget.mdf" />
+    <Content Include="App_Data\Budget_log.ldf">
+      <DependentUpon>Budget.mdf</DependentUpon>
+    </Content>
     <Content Include="default.aspx" />
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
@@ -112,10 +116,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Budget.mdf" />
-    <Content Include="App_Data\Budget_log.ldf">
-      <DependentUpon>Budget.mdf</DependentUpon>
-    </Content>
     <Content Include="forgotPassword.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />

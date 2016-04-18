@@ -12,6 +12,7 @@ namespace FormsAuthenticationExample.SecurePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write(HttpContext.Current.Profile.UserName);
             if (!IsPostBack)
             {
                 //Automatically filled through the datasource so this doesn't work.
