@@ -13,6 +13,8 @@ namespace DJJKBudgettingProject
     {
         public static string cs = ConfigurationManager.ConnectionStrings["cs_Budget"].ConnectionString;
 
+        /////////////////////* USER METHODS */
+
         /// <summary>
         /// Method used for the user to login. Returns: UserID or 0, if unsuccessful.
         /// </summary>
@@ -52,37 +54,9 @@ namespace DJJKBudgettingProject
                 }
                 catch (Exception excep)
                 {
+                    
                 }
                 return 0;
-            }
-        }
-
-        /// <summary>
-        /// Used to create and insert the budget into the database. Returns: 1 or 0, if unsuccessful.
-        /// </summary>
-        /// <param name="userid">int</param>
-        /// <param name="budgetName">string</param>
-        /// <param name="budgetDescription">string</param>
-        /// <param name="budgetSaving">decimal</param>
-        /// <param name="startDate">string</param>
-        /// <param name="endDate">string</param>
-        /// <returns>1 or 0, if unsuccessful.</returns>
-        public static int CreateBudget(int userid, string budgetName, string budgetDescription, decimal budgetSaving, string startDate, string endDate)
-        {
-            string query = "INSERT INTO budget (userid, name, description, saving, start_date, end_date) " +
-                                           "VALUES (@userid, @name, @description, @saving, @start_date, @end_date)";
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.Parameters.AddWithValue("@userid", userid);
-                cmd.Parameters.AddWithValue("@name", budgetName);
-                cmd.Parameters.AddWithValue("@description", budgetDescription);
-                cmd.Parameters.AddWithValue("@saving", budgetSaving);
-                cmd.Parameters.AddWithValue("@start_date", startDate);
-                cmd.Parameters.AddWithValue("@end_date", endDate);
-
-                return (int)cmd.ExecuteNonQuery();
             }
         }
 
@@ -140,13 +114,13 @@ namespace DJJKBudgettingProject
         }
 
         /// <summary>
-        /// Method to check if the user exists.  Returns: 1 or 0, if unsuccessful.
+        /// Method to check if the user exists.  Returns: 0 or 1, if unsuccessful.
         /// </summary>
         /// <param name="username">string</param>
-        /// <returns>1 or 0, if unsuccessful.</returns>
+        /// <returns>0 or 1, if unsuccessful.</returns>
         public static int DoesUserExist(string username)
         {
-            string query = "SELECT count(*) FROM Users WHERE username=@username";
+            string query = "SELECT count(userid) FROM Users WHERE username=@username";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -155,7 +129,7 @@ namespace DJJKBudgettingProject
                 cmd.Parameters.AddWithValue("@username", username);
                 return (int)cmd.ExecuteScalar();
             }
-            return 0;
+            return 1;
         }
 
         /// <summary>
@@ -228,6 +202,77 @@ namespace DJJKBudgettingProject
                 return cmd.ExecuteNonQuery();
             }
             return 0;
+        }
+
+        /////////////////////* BUDGET METHODS */
+
+        /// <summary>
+        /// Used to create and insert the budget into the database. Returns: 1 or 0, if unsuccessful.
+        /// </summary>
+        /// <param name="userid">int</param>
+        /// <param name="budgetName">string</param>
+        /// <param name="budgetDescription">string</param>
+        /// <param name="budgetSaving">decimal</param>
+        /// <param name="startDate">string</param>
+        /// <param name="endDate">string</param>
+        /// <returns>1 or 0, if unsuccessful.</returns>
+        public static int CreateBudget(int userid, string budgetName, string budgetDescription, decimal budgetSaving, string startDate, string endDate)
+        {
+            string query = "INSERT INTO budget (userid, name, description, saving, start_date, end_date) " +
+                                           "VALUES (@userid, @name, @description, @saving, @start_date, @end_date)";
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@userid", userid);
+                cmd.Parameters.AddWithValue("@name", budgetName);
+                cmd.Parameters.AddWithValue("@description", budgetDescription);
+                cmd.Parameters.AddWithValue("@saving", budgetSaving);
+                cmd.Parameters.AddWithValue("@start_date", startDate);
+                cmd.Parameters.AddWithValue("@end_date", endDate);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Method used to delete a budget. Returns: 1 or 0, if unsuccessful.
+        /// </summary>
+        /// <param name="budgetid">int</param>
+        /// <returns>1 or 0, if unsuccessful.</returns>
+        public static int DeleteBudget(int budgetid)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM budget WHERE budgetid=@budgetid";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@budgetid", budgetid);
+
+                return cmd.ExecuteNonQuery();
+            }
+            return 0;
+        } 
+
+        ////////////////////* TRANSACTION METHODS */
+
+        public static int CreateTransaction(int budgetid, int categoryid, string name, string description, decimal amount, string datespent)
+        {
+            string query = "INSERT INTO transactions (budgetid, categoryid, name, description, amount, datespent) " +
+                                           "VALUES (@budgetid, @categoryid, @name, @description, @amount, @datespent)";
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@budgetid", budgetid);
+                cmd.Parameters.AddWithValue("@categoryid", categoryid);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@description", description);                
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@datespent", datespent);
+
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }
