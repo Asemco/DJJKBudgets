@@ -94,10 +94,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Budget.mdf" />
-    <Content Include="App_Data\Budget_log.ldf">
-      <DependentUpon>Budget.mdf</DependentUpon>
-    </Content>
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
     <Content Include="SecurePages\Web.config" />
@@ -179,6 +175,9 @@
     <Compile Include="UserControls\HeaderUserControl.ascx.designer.cs">
       <DependentUpon>HeaderUserControl.ascx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
