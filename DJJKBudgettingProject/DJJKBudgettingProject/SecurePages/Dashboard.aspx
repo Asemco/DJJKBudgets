@@ -32,7 +32,7 @@
         Lets See Your Spending<br />
         <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2">
             <Series>
-                <asp:Series ChartType="Line" Name="Series1" XValueMember="amount" YValueMembers="datespent">
+                <asp:Series ChartType="Point" Name="Series1" XValueMember="datespent" YValueMembers="amount">
                 </asp:Series>
             </Series>
             <ChartAreas>

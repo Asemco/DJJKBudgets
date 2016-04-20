@@ -22,10 +22,18 @@ namespace DJJKBudgettingProject
             return dbfb.GetBudgets(UserId);
         }
 
-        public DataRow GetBudgetById()
+        public Budget GetBudgetById()
         {
             DBFactory.Budgets dbfb = new DBFactory.Budgets();
-            return dbfb.GetBudgetById(BudgetId);
+            DataRow temp = dbfb.GetBudgetById(BudgetId);
+            BudgetId = Convert.ToInt32(temp["budgetid"].ToString());
+            UserId = Convert.ToInt32(temp["userid"].ToString());
+            Name = temp["name"].ToString();
+            Description = temp["description"].ToString();
+            Saving = Convert.ToDecimal(temp["amount"].ToString());
+            Start_Date = temp["datespent"].ToString();
+            End_Date = temp["categoryid"].ToString();
+            return this;
         }
 
         public int InsertBudget()
