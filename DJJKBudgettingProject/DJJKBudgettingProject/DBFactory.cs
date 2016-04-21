@@ -14,6 +14,7 @@ namespace DJJKBudgettingProject
     {
         public static string cs = ConfigurationManager.ConnectionStrings["cs_Budget"].ConnectionString;
 
+
         /////////////////////* USER METHODS */
         public class Users
         {
@@ -187,7 +188,7 @@ namespace DJJKBudgettingProject
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
                     string query = "DELETE FROM users WHERE userid=@userid";
-
+                    conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@userid", userid);
 
@@ -212,7 +213,7 @@ namespace DJJKBudgettingProject
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
-                    DataRow dr = GetUserById(user.UserId);
+                    DataRow dr = ds.Tables[0].Rows[0];
                     if (dr != null)
                     {
                         dr["email"] = user.Email;
@@ -243,7 +244,7 @@ namespace DJJKBudgettingProject
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
-                    DataRow dr = GetUserById(user.UserId);
+                    DataRow dr = ds.Tables[0].Rows[0];
                     if (dr != null)
                     {
                         string salt = Crypto.GenerateSalt();
@@ -343,7 +344,7 @@ namespace DJJKBudgettingProject
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
                     string query = "DELETE FROM budget WHERE budgetid=@budgetid";
-
+                    conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@budgetid", budgetid);
 
@@ -368,7 +369,7 @@ namespace DJJKBudgettingProject
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
-                    DataRow dr = GetBudgetById(budget.BudgetId);
+                    DataRow dr = ds.Tables[0].Rows[0];
                     if (dr != null)
                     {
                         dr["name"] = budget.Name;
@@ -383,7 +384,6 @@ namespace DJJKBudgettingProject
 
                 return 0;
             }
-
         }
 
         /////////////////////* TRANSACTION METHODS */
@@ -471,7 +471,7 @@ namespace DJJKBudgettingProject
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
                     string query = "DELETE FROM transactions WHERE transactionid=@transactionid";
-
+                    conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@transactionid", transactionid);
 
@@ -496,7 +496,7 @@ namespace DJJKBudgettingProject
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(ds);
-                    DataRow dr = GetTransactionById(trans.TransactionId);
+                    DataRow dr = ds.Tables[0].Rows[0];
                     if (dr != null)
                     {
                         dr["categoryid"] = trans.CategoryId;

@@ -22,10 +22,18 @@ namespace DJJKBudgettingProject
             return dbft.GetTransactions(UserId);
         }
 
-        public DataRow GetTransactionById()
+        public Transaction GetTransactionById(int transactionId)
         {
             DBFactory.Transactions dbft = new DBFactory.Transactions();
-            return dbft.GetTransactionById(TransactionId);
+            DataRow temp = dbft.GetTransactionById(transactionId);
+            TransactionId = Convert.ToInt32(temp["transactionid"].ToString());
+            UserId = Convert.ToInt32(temp["userid"].ToString());
+            CategoryId = Convert.ToInt32(temp["categoryid"].ToString());
+            Name = temp["name"].ToString();
+            Description = temp["description"].ToString();
+            Amount = Convert.ToDecimal(temp["amount"].ToString());
+            DateSpent = temp["datespent"].ToString();
+            return this;
         }
 
         public int InsertTransaction()
