@@ -61,6 +61,9 @@
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
                     <a class="mdl-navigation__link mdl-navigation__link--current" href="/SecurePages/Dashboard.aspx"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">chrome_reader_mode</i>Dashboard</a>
+                    <a class="mdl-navigation__link" href="/SecurePages/CreateBudget.aspx"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">timeline</i>Manage Budgets</a>
+                    <a class="mdl-navigation__link" href="/SecurePages/CreateTransaction.aspx"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">credit_card</i>Manage Transactions</a>
+                    <a class="mdl-navigation__link" href="/SecurePages/Profile.aspx"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">perm_identity</i>Profile</a>
                     <asp:LinkButton ID="linklogout" runat="server" CssClass="mdl-navigation__link" OnClick="linklogout_Click"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i>Logout</asp:LinkButton>
                 </nav>
             </div>

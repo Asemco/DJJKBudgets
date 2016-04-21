@@ -330,6 +330,8 @@ namespace DJJKBudgettingProject
                     cmd.Parameters.AddWithValue("@start_date", budget.Start_Date);
                     cmd.Parameters.AddWithValue("@end_date", budget.End_Date);
 
+
+
                     return cmd.ExecuteNonQuery();
                 }
             }
@@ -343,12 +345,16 @@ namespace DJJKBudgettingProject
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    string query = "DELETE FROM budget WHERE budgetid=@budgetid";
+                    string query1 = "DELETE FROM BudgetCategories WHERE budgetid=@budgetid";
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@budgetid", budgetid);
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    cmd1.Parameters.AddWithValue("@budgetid", budgetid);
+                    cmd1.ExecuteNonQuery();
+                    string query2 = "DELETE FROM budget WHERE budgetid=@budgetid";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    cmd2.Parameters.AddWithValue("@budgetid", budgetid);
 
-                    return cmd.ExecuteNonQuery();
+                    return cmd2.ExecuteNonQuery();
                 }
                 return 0;
             }

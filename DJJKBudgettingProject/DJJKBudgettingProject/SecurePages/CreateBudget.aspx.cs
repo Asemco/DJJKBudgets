@@ -72,11 +72,31 @@ namespace DJJKBudgettingProject.SecurePages
             }
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (DropDownList1.SelectedIndex == 2) {
-
+            Budget budget = new Budget();
+            budget.UserId = (int)Session["userid"];
+            budget.Name = txtName.Text.Trim();
+            budget.Description = txtDescription.Text.Trim();
+            budget.Start_Date = calendarStart.SelectedDate.ToShortDateString();
+            budget.End_Date = calendarEnd.SelectedDate.ToShortDateString();
+            try
+            {
+                budget.Saving = Convert.ToDecimal(txtSave.Text);
             }
+            catch (Exception excep)
+            {
+                Label2.Text = "Incorrect savings amount!  Please enter how much you'd like to save as a number.";
+                Label2.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            Budget budget = new Budget();
+            budget.BudgetId = Convert.ToInt32(DropDownList1.SelectedValue);
+            budget.DeleteBudget();
         }
     }
 }
