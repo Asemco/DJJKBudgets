@@ -13,7 +13,11 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
     <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-layout__tab-panel is-active" id="create">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
@@ -53,9 +57,13 @@
                 </div>
             </div>
         </div>
+                </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 
     <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-layout__tab-panel" id="update">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
@@ -104,9 +112,13 @@
                 </div>
             </div>
         </div>
+                </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 
     <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-layout__tab-panel" id="delete">
+        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
@@ -152,5 +164,7 @@
                 </div>
             </div>
         </div>
+                </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 </asp:Content>
