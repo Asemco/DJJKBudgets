@@ -18,8 +18,11 @@
 
 
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="mdl-layout__tab-panel is-active" id="create">
-        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Create Transaction</h2>
@@ -51,16 +54,19 @@
                 </div>
             </div>
         </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
     <div class="mdl-layout__tab-panel" id="update">
-        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Update Budget</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
-                    <asp:ListBox ID="ListBox2" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [budgetid], [userid] FROM [Budget] WHERE ([userid] = @userid)">
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Budget] WHERE ([userid] = @userid)">
                         <SelectParameters>
                             <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" Type="Int32" />
                         </SelectParameters>
@@ -78,9 +84,14 @@
                 </div>
             </div>
         </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
+
     <div class="mdl-layout__tab-panel" id="delete">
-        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+                <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Update Budget</h2>
@@ -98,5 +109,7 @@
                 </div>
             </div>
         </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 </asp:Content>
