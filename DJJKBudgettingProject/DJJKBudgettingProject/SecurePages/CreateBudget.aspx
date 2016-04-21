@@ -78,7 +78,7 @@
                                 <ContentTemplate>
                                     <div class="mdl-cell mdl-cell--12-col">
                                         <p>Categories</p>
-                                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="DataSourceBudgetList" DataTextField="name" DataValueField="budgetid" runat="server" AutoPostBack="True">
+                                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="DataSourceBudgetList" DataTextField="name" DataValueField="budgetid" AutoPostBack="True">
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Budget] WHERE ([userid] = @userid)">
                                             <SelectParameters>
