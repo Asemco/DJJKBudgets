@@ -70,24 +70,6 @@ namespace DJJKBudgettingProject
             }
         }
 
-        protected void liBoxCreateCategories_DataBound(object sender, EventArgs e)
-        {
-            ListItem listItem = new ListItem("Select a Category", "-1");
-            liBoxCreateCategories.Items.Insert(0, listItem);
-        }
-
-        protected void liBoxUpdateCategories_DataBound(object sender, EventArgs e)
-        {
-            ListItem listItem = new ListItem("Select a Category", "-1");
-            liBoxUpdateCategories.Items.Insert(0, listItem);
-        }
-
-        protected void liBoxUpdateTransactions_DataBound(object sender, EventArgs e)
-        {
-            ListItem listItem = new ListItem("Select a Transaction", "-1");
-            liBoxUpdateTransactions.Items.Insert(0, listItem);
-        }
-
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Transaction transaction = new Transaction();
@@ -149,6 +131,30 @@ namespace DJJKBudgettingProject
             transaction.TransactionId = Convert.ToInt32(liBoxDeleteTransactions.SelectedItem.Value);
             transaction.DeleteTransaction();
             lblDeleteResult.Text = "Transaction was deleted successfully.";
+        }
+
+        protected void liBoxCreateCategories_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Category", "-1");
+            liBoxCreateCategories.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxUpdateCategories_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Category", "-1");
+            liBoxUpdateCategories.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxDeleteTransactions_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Transaction", "-1");
+            liBoxDeleteTransactions.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxUpdateTransactions_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Transaction", "-1");
+            liBoxUpdateTransactions.Items.Insert(0, listItem);
         }
 
         protected void liBoxUpdateTransactions_SelectedIndexChanged(object sender, EventArgs e)

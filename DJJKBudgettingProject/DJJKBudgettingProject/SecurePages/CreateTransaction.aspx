@@ -110,7 +110,7 @@
             <div runat="server" id="MyDiv3" >
                 Which Transaction Would You Like To Remove?<br />
                 Transaction:
-                <asp:ListBox ID="liBoxDeleteTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" Height="49px" OnDataBound="liBoxUpdateTransactions_DataBound" OnSelectedIndexChanged="liBoxDeleteTransactions_SelectedIndexChanged"></asp:ListBox>
+                <asp:ListBox ID="liBoxDeleteTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" Height="49px" OnDataBound="liBoxDeleteTransactions_DataBound" OnSelectedIndexChanged="liBoxDeleteTransactions_SelectedIndexChanged"></asp:ListBox>
         <br />
                 Transaction Name:<asp:TextBox ID="txtDeleteName" runat="server" ReadOnly="True"></asp:TextBox>
         <br />
