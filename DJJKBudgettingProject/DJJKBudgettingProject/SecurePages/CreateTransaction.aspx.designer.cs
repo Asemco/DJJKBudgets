@@ -13,24 +13,6 @@ namespace DJJKBudgettingProject {
     public partial class CreateTransaction {
         
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// UpdatePanel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
-        /// <summary>
         /// txtCreateName control.
         /// </summary>
         /// <remarks>
@@ -85,15 +67,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarCreateDateSpent;
         
         /// <summary>
-        /// btnCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
-        
-        /// <summary>
         /// lblCreateResult control.
         /// </summary>
         /// <remarks>
@@ -103,13 +76,13 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Label lblCreateResult;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Button btnCreate;
         
         /// <summary>
         /// liBoxUpdateTransactions control.
@@ -175,15 +148,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarUpdateDateSpent;
         
         /// <summary>
-        /// btnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
         /// lblUpdateResult control.
         /// </summary>
         /// <remarks>
@@ -193,13 +157,13 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Label lblUpdateResult;
         
         /// <summary>
-        /// UpdatePanel2 control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
         /// liBoxDeleteTransactions control.
@@ -256,15 +220,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarDeleteDateSpent;
         
         /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
         /// lblDeleteResult control.
         /// </summary>
         /// <remarks>
@@ -272,5 +227,14 @@ namespace DJJKBudgettingProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDeleteResult;
+        
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }
