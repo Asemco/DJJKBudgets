@@ -92,7 +92,7 @@
                     What Would You Like To Remove
                     <br />
                     Budget Name:
-                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
+                    <asp:DropDownList ID="DropDownList1" runat="server">
                     </asp:DropDownList>
                     <br />
                     Budget Description:<asp:TextBox ID="TextBox5" runat="server" TextMode="MultiLine"></asp:TextBox>
