@@ -67,6 +67,9 @@
                 <asp:Button CssClass="mdl-button" ID="btnConfirm" runat="server" OnClick="btnConfirm_Click" Text="Yes" />
                 <asp:Button CssClass="mdl-button" ID="btnDelete" runat="server" Text="DELETE FOREVER AND EVER!" Visible="False" OnClick="btnDelete_Click" />
             </div>
+            <div class="mdl-cell mdl-cell--12-col">
+                    <asp:Label ID="lblDeleteResult" runat="server"></asp:Label>
+            </div>
         </div>
     </div>
 </asp:Content>

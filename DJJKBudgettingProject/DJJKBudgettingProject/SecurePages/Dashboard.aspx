@@ -43,7 +43,7 @@
                     </Series>
                     <ChartAreas>
                         <asp:ChartArea Name="ChartArea1">
-                            <AxisX Interval="2"> </AxisX>
+                            <AxisX Interval="1"> </AxisX>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
@@ -61,18 +61,24 @@
                 <h2 class="mdl-card__title-text">Categories</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3" IsMapEnabled="True">
+                <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3">
                     <Series>
-                        <asp:Series ChartType="Doughnut" Name="Series1" XValueMember="categoryname" YValueMembers="categoryid" YValuesPerPoint="6">
+                        <asp:Series ChartType="Doughnut" Name="Series1" XValueMember="categoryname" YValueMembers="amount" YValuesPerPoint="6">
                         </asp:Series>
                     </Series>
                     <ChartAreas>
                         <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="True" BackGradientStyle="None">
                             <AxisX Interval="1" LabelAutoFitStyle="IncreaseFont, DecreaseFont, StaggeredLabels, LabelsAngleStep45, WordWrap"> </AxisX>
+                            <AxisY Enabled="True"></AxisY>
+<Area3DStyle Enable3D="True"></Area3DStyle>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [categoryid], [categoryname] FROM [Category]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT Category.categoryname, SUM(Transactions.amount) AS amount FROM Category INNER JOIN Transactions ON Category.categoryid = Transactions.categoryid INNER JOIN Users ON Users.userid = Transactions.userid WHERE (Users.userid = @userid) GROUP BY Category.categoryid, Category.categoryname ORDER BY Category.categoryid">
+                    <SelectParameters>
+                        <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </div>
         </div>
     </div>

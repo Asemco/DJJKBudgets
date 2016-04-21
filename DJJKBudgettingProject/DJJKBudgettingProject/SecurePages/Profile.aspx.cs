@@ -27,6 +27,7 @@ namespace DJJKBudgettingProject.SecurePages
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            lblUpdateResult.Text = "";
             User user = new User();
             user.UserId = Convert.ToInt32(Session["userid"]);
             user.Username = txtUsername.Text;
@@ -91,9 +92,9 @@ namespace DJJKBudgettingProject.SecurePages
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            user.UserId = Convert.ToInt32(Session["userid"].ToString());
-            user.DeleteUser();
+            lblDeleteResult.Text = "Sorry, but you are not allowed to delete your profile.";
+            btnDelete.Visible = false;
+            btnConfirm.Visible = false;
         }
     }
 }
