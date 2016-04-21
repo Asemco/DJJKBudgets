@@ -39,16 +39,6 @@
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-            <asp:TextBox ID="txtQuestion" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-            <label class="mdl-textfield__label" for="ContentBody_txtQuestion">Secret Question</label>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-            <asp:TextBox ID="txtAnswer" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-            <label class="mdl-textfield__label" for="ContentBody_txtAnswer">Secret Answer</label>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
             <asp:TextBox ID="txtIncome" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
             <label class="mdl-textfield__label" for="ContentBody_txtIncome">Income</label>
         </div>

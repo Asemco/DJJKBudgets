@@ -70,31 +70,6 @@ namespace DJJKBudgettingProject
             }
         }
 
-        protected void liBoxCreateCategories_DataBound(object sender, EventArgs e)
-        {
-            ListItem listItem = new ListItem("Select a Category", "-1");
-            liBoxCreateCategories.Items.Insert(0, listItem);
-        }
-
-        protected void liBoxUpdateTransactions_DataBound(object sender, EventArgs e)
-        {
-            ListItem listItem = new ListItem("Select a Transaction", "-1");
-            liBoxUpdateCategories.Items.Insert(0, listItem);
-        }
-
-        protected void liBoxUpdateTransactions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Transaction transaction = new Transaction();
-            int transactionId = Convert.ToInt32(liBoxUpdateTransactions.SelectedItem.Value);
-            transaction = transaction.GetTransactionById(transactionId);
-            txtUpdateName.Text = transaction.Name;
-            txtUpdateDescription.Text = transaction.Description;
-            txtUpdateAmount.Text = transaction.Amount.ToString();
-            liBoxUpdateCategories.SelectedIndex = transaction.CategoryId - 1;
-            calendarUpdateDateSpent.SelectedDate = DateTime.Parse(transaction.DateSpent);
-            calendarUpdateDateSpent.VisibleDate = calendarUpdateDateSpent.SelectedDate;
-        }
-
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Transaction transaction = new Transaction();
@@ -158,17 +133,60 @@ namespace DJJKBudgettingProject
             lblDeleteResult.Text = "Transaction was deleted successfully.";
         }
 
+        protected void liBoxCreateCategories_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Category", "-1");
+            liBoxCreateCategories.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxUpdateCategories_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Category", "-1");
+            liBoxUpdateCategories.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxDeleteTransactions_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Transaction", "-1");
+            liBoxDeleteTransactions.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxUpdateTransactions_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Transaction", "-1");
+            liBoxUpdateTransactions.Items.Insert(0, listItem);
+        }
+
+        protected void liBoxUpdateTransactions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Transaction transaction = new Transaction();
+            if (liBoxUpdateTransactions.SelectedItem.Value != "-1")
+            {
+                int transactionId = Convert.ToInt32(liBoxUpdateTransactions.SelectedItem.Value);
+                transaction = transaction.GetTransactionById(transactionId);
+                txtUpdateName.Text = transaction.Name;
+                txtUpdateDescription.Text = transaction.Description;
+                txtUpdateAmount.Text = transaction.Amount.ToString();
+                liBoxUpdateCategories.SelectedIndex = transaction.CategoryId - 1;
+                calendarUpdateDateSpent.SelectedDate = DateTime.Parse(transaction.DateSpent);
+                calendarUpdateDateSpent.VisibleDate = calendarUpdateDateSpent.SelectedDate;
+            }
+        }
+
         protected void liBoxDeleteTransactions_SelectedIndexChanged(object sender, EventArgs e)
         {
             Transaction transaction = new Transaction();
-            int transactionId = Convert.ToInt32(liBoxDeleteTransactions.SelectedItem.Value);
-            transaction = transaction.GetTransactionById(transactionId);
-            txtDeleteName.Text = transaction.Name;
-            txtDeleteDescription.Text = transaction.Description;
-            txtDeleteAmount.Text = transaction.Amount.ToString();
-            liBoxDeleteCategories.SelectedIndex = transaction.CategoryId - 1;
-            calendarDeleteDateSpent.SelectedDate = DateTime.Parse(transaction.DateSpent);
-            calendarDeleteDateSpent.VisibleDate = calendarDeleteDateSpent.SelectedDate;
+            if (liBoxDeleteTransactions.SelectedItem.Value != "-1")
+            {
+                int transactionId = Convert.ToInt32(liBoxDeleteTransactions.SelectedItem.Value);
+                transaction = transaction.GetTransactionById(transactionId);
+                txtDeleteName.Text = transaction.Name;
+                txtDeleteDescription.Text = transaction.Description;
+                txtDeleteAmount.Text = transaction.Amount.ToString();
+                liBoxDeleteCategories.SelectedIndex = transaction.CategoryId - 1;
+                calendarDeleteDateSpent.SelectedDate = DateTime.Parse(transaction.DateSpent);
+                calendarDeleteDateSpent.VisibleDate = calendarDeleteDateSpent.SelectedDate;
+            }
         }
     }
 }
