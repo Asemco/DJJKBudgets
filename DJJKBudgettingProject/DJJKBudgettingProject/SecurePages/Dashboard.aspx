@@ -5,7 +5,7 @@
 <asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Dashboard: Overview</asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
-    <div class="mdl-grid mdl-cell--12-col">
+    <div class="mdl-grid mdl-cell mdl-cell--12-col">
         <div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">Savings</h2>
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="mdl-grid mdl-cell--12-col">
+    <div class="mdl-grid mdl-cell mdl-cell--12-col">
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">Categories</h2>
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div class="mdl-grid mdl-cell--12-col">
+    <div class="mdl-grid mdl-cell mdl-cell--12-col">
         <asp:Button CssClass="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--primary" ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Work On Budget" PostBackUrl="~/SecurePages/CreateBudget.aspx" />
     </div>
 </asp:Content>

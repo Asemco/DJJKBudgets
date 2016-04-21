@@ -1,58 +1,35 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateTransaction.aspx.cs" Inherits="DJJKBudgettingProject.CreateTransaction" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/material.Master" CodeBehind="CreateTransaction.aspx.cs" Inherits="DJJKBudgettingProject.CreateTransaction" %>
 
-<%@ Register src="../UserControls/HeaderUserControl.ascx" tagname="HeaderUserControl" tagprefix="uc1" %>
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">DJJK Budgeting - Manage Transactions</asp:Content>
 
-<!DOCTYPE html>
+<asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Dashboard: Manage Transactions</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script>
-       // $(function () {
-        //$("#MyDiv").fadeOut(500);
-        //$("#DropDownList1").change(function () {
-          //  $("#MyDiv").fadeIn(1000);
-    //});
-//});
-</script>
-    <style>
-        #MyDiv {
-   float: left;
-}
-     #MyDiv2 {
-   float: right;
-}
-      #MyDiv3 {
-   float: center;
-}
+<asp:Content ContentPlaceHolderID="ExtraHeaders" runat="server">
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#create" class="mdl-layout__tab is-active">Create</a>
+        <a href="#update" class="mdl-layout__tab">Update</a>
+        <a href="#delete" class="mdl-layout__tab">Delete</a>
+    </div>
+</asp:Content>
 
-    </style>
-  
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <uc1:HeaderUserControl ID="HeaderUserControl1" runat="server" />
-            What Would You Like To Do:
-            <div>
+<asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+    <div class="mdl-layout__tab-panel is-active" id="create">
+        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Create Transaction</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <asp:TextBox ID="txtCreateName" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
+                        <label class="mdl-textfield__label" for="ContentBody_txtCreateName">Name</label>
+                    </div>
 
-                <asp:DropDownList ID="ddlTransactionOptions" runat="server">
-                    <asp:ListItem>Update Transaction</asp:ListItem>
-                    <asp:ListItem>Delete Transaction</asp:ListItem>
-                    <asp:ListItem>Create New Transaction</asp:ListItem>
-                </asp:DropDownList>
-                <br />
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <asp:TextBox ID="txtCreateDescription" runat="server" TextMode="MultiLine" CssClass="mdl-textfield__input"></asp:TextBox>
+                        <label class="mdl-textfield__label" for="ContentBody_txtCreateDescription">Description</label>
+                    </div>
 
-     </div >    
-            
-     <div runat="server" id="MyDiv" >
-         Add A Transaction!<br />
-         Name:
-        <asp:TextBox ID="txtCreateName" runat="server"></asp:TextBox>
-        <br />
-         Description:<asp:TextBox ID="txtCreateDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
-        <br />
          Category:
          <asp:ListBox ID="liBoxCreateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxCreateCategories_DataBound" Width="187px"></asp:ListBox>
          <asp:SqlDataSource ID="Categories" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
@@ -68,11 +45,19 @@
         <br />
         <asp:Label ID="lblCreateResult" runat="server"></asp:Label>
 
-     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout__tab-panel" id="update">
+        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Update Transaction</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
 
-        <div runat="server" id="MyDiv2" >
-            Update A Transaction!<br />
-            Transaction:
+                    Transaction:
         <asp:ListBox ID="liBoxUpdateTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" OnDataBound="liBoxUpdateTransactions_DataBound" OnSelectedIndexChanged="liBoxUpdateTransactions_SelectedIndexChanged"></asp:ListBox>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [transactionid], RTRIM([name]) + ' - ' + [description] as [name] FROM [Transactions] WHERE ([userid] = @userid)">
                 <SelectParameters>
@@ -98,10 +83,19 @@
                 <br />
                 <asp:Label ID="lblUpdateResult" runat="server"></asp:Label>
 
-     </div>
-            <div runat="server" id="MyDiv3" >
-                Which Transaction Would You Like To Remove?<br />
-                Transaction:
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout__tab-panel" id="delete">
+        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Delete Transaction</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+
+                    Transaction:
                 <asp:ListBox ID="liBoxDeleteTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" Height="49px" OnDataBound="liBoxUpdateTransactions_DataBound" OnSelectedIndexChanged="liBoxDeleteTransactions_SelectedIndexChanged"></asp:ListBox>
         <br />
                 Transaction Name:<asp:TextBox ID="txtDeleteName" runat="server" ReadOnly="True"></asp:TextBox>
@@ -122,10 +116,8 @@
         <br />
         <asp:Label ID="lblDeleteResult" runat="server"></asp:Label>
 
-     </div> 
-            
-    
+                </div>
+            </div>
+        </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
