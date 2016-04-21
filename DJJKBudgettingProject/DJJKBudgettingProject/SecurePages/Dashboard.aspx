@@ -36,7 +36,7 @@
                 <h2 class="mdl-card__title-text">Spending</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2" Palette="Fire">
+                <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2" Palette="Berry">
                     <Series>
                         <asp:Series Name="Series1" XValueMember="name" YValueMembers="Amount" YValuesPerPoint="2" MarkerStyle="Diamond">
                         </asp:Series>
