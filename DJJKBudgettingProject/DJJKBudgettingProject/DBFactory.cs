@@ -391,7 +391,7 @@ namespace DJJKBudgettingProject
                 return 0;
             }
 
-            public int InsertBudgetCategory(Budget budget,int categoryID)
+            public int InsertBudgetCategory(Budget budget, int categoryID)
             {
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -403,9 +403,9 @@ namespace DJJKBudgettingProject
                     cmd1.ExecuteNonQuery();
                     return cmd1.ExecuteNonQuery();
                 }
-
                 return 0;
             }
+        }
 
         /////////////////////* TRANSACTION METHODS */
         public class Transactions
