@@ -103,6 +103,7 @@
     <Content Include="Layouts\ClientsSystem.aspx" />
     <Content Include="packages.config" />
     <Content Include="SecurePages\CreateBudget.aspx" />
+    <Content Include="SecurePages\Profile.aspx" />
     <Content Include="SecurePages\Web.config" />
     <Content Include="_css\material-common.css" />
     <Content Include="_css\material.min.css" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="SecurePages\CreateTransaction.aspx.designer.cs">
       <DependentUpon>CreateTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SecurePages\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecurePages\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />

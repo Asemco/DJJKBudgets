@@ -62,7 +62,7 @@ namespace DJJKBudgettingProject
                         // Non-existant transaction was attempted to be selected.
                     }
                 }
-                return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+                return ds.Tables[0].NewRow(); // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
             }
 
             /// <summary>
@@ -307,7 +307,7 @@ namespace DJJKBudgettingProject
                         // Non-existant transaction was attempted to be selected.
                     }
                 }
-                return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+                return ds.Tables[0].NewRow(); // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
             }
 
             /// <summary>
@@ -434,7 +434,7 @@ namespace DJJKBudgettingProject
                         // Non-existant transaction was attempted to be selected.
                     }
                 }
-                return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+                return ds.Tables[0].NewRow(); // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
             }
 
             /// <summary>
@@ -558,7 +558,7 @@ namespace DJJKBudgettingProject
                         // Non-existant transaction was attempted to be selected.
                     }
                 }
-                return ds.Tables[0].Rows[0]; // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
+                return ds.Tables[0].NewRow(); // If this is ever reached, I think all hell will break loose.  But it shouldn't be reached.
             }
         }     
     }
