@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Category: <asp:ListBox ID="liBoxCreateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxCreateCategories_DataBound"></asp:ListBox>
+                        <p>Category:</p> <asp:ListBox ID="liBoxCreateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxCreateCategories_DataBound"></asp:ListBox>
                         <asp:SqlDataSource ID="Categories" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
                     </div>
 
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Spent on date: <asp:Calendar ID="calendarCreateDateSpent" runat="server"></asp:Calendar>
+                        <p>Spent on date: </p><asp:Calendar ID="calendarCreateDateSpent" runat="server"></asp:Calendar>
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="mdl-card__supporting-text">
                     <div class="mdl-cell mdl-cell--12-col">
-                        Transaction:
+                        <p>Transaction:</p>
                         <asp:ListBox ID="liBoxUpdateTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" OnDataBound="liBoxUpdateTransactions_DataBound" OnSelectedIndexChanged="liBoxUpdateTransactions_SelectedIndexChanged"></asp:ListBox>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [transactionid], RTRIM([name]) + ' - ' + [description] as [name] FROM [Transactions] WHERE ([userid] = @userid)">
                             <SelectParameters>
@@ -81,26 +81,29 @@
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Transaction Name</p>
                         <asp:TextBox ID="txtUpdateName" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtUpdateName">Transaction Name</label>
+                        
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Description</p>
                         <asp:TextBox ID="txtUpdateDescription" runat="server" TextMode="MultiLine" CssClass="mdl-textfield__input"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtUpdateDescription">Description</label>
+                        
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Category: <asp:ListBox ID="liBoxUpdateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxUpdateCategories_DataBound"></asp:ListBox>
+                        <p>Category:</p> <asp:ListBox ID="liBoxUpdateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxUpdateCategories_DataBound"></asp:ListBox>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Cost($)</p>
                         <asp:TextBox ID="txtUpdateAmount" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtUpdateAmount">Cost ($)</label>
+                        
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Spent on date: <asp:Calendar ID="calendarUpdateDateSpent" runat="server"></asp:Calendar>
+                        <p>Spent on date:</p> <asp:Calendar ID="calendarUpdateDateSpent" runat="server"></asp:Calendar>
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
@@ -126,32 +129,34 @@
                 </div>
                 <div class="mdl-card__supporting-text">
                     <div class="mdl-cell mdl-cell--12-col">
-                        Transaction:
+                        <p>Transaction:</p>
                         <asp:ListBox ID="liBoxDeleteTransactions" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="transactionid" Height="49px" OnDataBound="liBoxDeleteTransactions_DataBound" OnSelectedIndexChanged="liBoxDeleteTransactions_SelectedIndexChanged"></asp:ListBox>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Transaction Name</p>
                         <asp:TextBox ID="txtDeleteName" runat="server" ReadOnly="True" CssClass="mdl-textfield__input"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtDeleteName">Transaction Name</label>
+                        <
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Description</p>
                         <asp:TextBox ID="txtDeleteDescription" runat="server" TextMode="MultiLine" CssClass="mdl-textfield__input" ReadOnly="true"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtDeleteDescription">Description</label>
+                        
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Category:
+                        <p>Category:</p>
                         <asp:ListBox ID="liBoxDeleteCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" Enabled="False"></asp:ListBox>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <p>Cost($)</p>
                         <asp:TextBox ID="txtDeleteAmount" runat="server" CssClass="mdl-textfield__input" ReadOnly="true"></asp:TextBox>
-                        <label class="mdl-textfield__label" for="ContentBody_txtDeleteAmount">Cost ($)</label>
                     </div>
                 
                     <div class="mdl-cell mdl-cell--12-col">
-                        Spent on date:
+                        <p>Spent on date:</p>
                         <asp:Calendar ID="calendarDeleteDateSpent" runat="server" Enabled="False"></asp:Calendar>
                     </div>
 

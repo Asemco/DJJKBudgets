@@ -81,6 +81,7 @@ namespace DJJKBudgettingProject.SecurePages
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Budget budget = new Budget();
+            budget.BudgetId = Convert.ToInt32(DropDownList2.SelectedValue);
             budget.UserId = (int)Session["userid"];
             budget.Name = TextBox1.Text.Trim();
             budget.Description = TextBox3.Text.Trim();
@@ -88,10 +89,9 @@ namespace DJJKBudgettingProject.SecurePages
             budget.End_Date = upCalendar2.SelectedDate.ToShortDateString();
             try
             {
-                Console.WriteLine("WOORKS");
-                budget.Saving = Math.Round(Convert.ToDecimal(TextBox4.Text), 2);
-                
-                budget.UpdateBudget();
+                decimal savings = Convert.ToDecimal(TextBox4.Text);
+                budget.Saving = savings;
+budget.UpdateBudget();
                 Label2.Text = "Updated Record.";
                 Label2.ForeColor = System.Drawing.Color.Green;
             }
@@ -105,7 +105,6 @@ namespace DJJKBudgettingProject.SecurePages
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("wow");
             Budget budget = new Budget();
             budget.BudgetId = Convert.ToInt32(DropDownList1.SelectedValue);
             budget.DeleteBudget();
@@ -120,19 +119,23 @@ namespace DJJKBudgettingProject.SecurePages
             TextBox4.Text = budget.Saving.ToString();
             upCalendar1.TodaysDate = DateTime.Parse(budget.Start_Date);
             upCalendar2.TodaysDate = DateTime.Parse(budget.End_Date);
+            upCalendar1.VisibleDate = upCalendar1.SelectedDate;
+            upCalendar2.VisibleDate = upCalendar2.SelectedDate;
         }
         protected void btnAddCategory_Click(object sender, EventArgs e)
         {
             Budget budget = new Budget();
             budget.BudgetId = Convert.ToInt32(DropDownList2.SelectedValue);
-            if(budget.InsertBudgetCategory(Convert.ToInt32(ListBox1.SelectedValue)) > 0)
+            int categoryid = Convert.ToInt32(ListBox1.SelectedValue);
+            int test = budget.InsertBudgetCategory(categoryid);
+            if (test > 0)
             {
-                Label3.Text = "Successfully added category";
+                Label3.Text = "Successfully added category : " + test;
                 Label3.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
-                Label3.Text = "Failed to add category";
+                Label3.Text = "Failed to add category : " + test;
                 Label3.ForeColor = System.Drawing.Color.Red;
             }
         }

@@ -400,10 +400,13 @@ namespace DJJKBudgettingProject
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     cmd1.Parameters.AddWithValue("@budgetid", budget.BudgetId);
                     cmd1.Parameters.AddWithValue("@categoryID", categoryID);
-                    cmd1.ExecuteNonQuery();
-                    return cmd1.ExecuteNonQuery();
+                    try {
+                        return cmd1.ExecuteNonQuery();
+                    } catch (Exception excep)
+                    {
+                        return 0;
+                    }
                 }
-                return 0;
             }
         }
 

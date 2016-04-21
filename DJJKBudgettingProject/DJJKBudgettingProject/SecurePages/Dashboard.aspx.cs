@@ -12,7 +12,6 @@ namespace FormsAuthenticationExample.SecurePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write("Username: " + HttpContext.Current.Session["userid"]);
             if (!IsPostBack)
             {
                 //Automatically filled through the datasource so this doesn't work.
