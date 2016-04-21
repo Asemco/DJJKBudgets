@@ -170,7 +170,7 @@ namespace DJJKBudgettingProject
                     cmd.Parameters.AddWithValue("@email", user.Email);
                     cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
-                    cmd.Parameters.AddWithValue("@salt", user.Salt);
+                    cmd.Parameters.AddWithValue("@salt", salt);
                     cmd.Parameters.AddWithValue("@income", user.Income);
                     cmd.Parameters.AddWithValue("@payfrequency", user.PayFrequency);
                     return cmd.ExecuteNonQuery();
