@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/material.Master" Inherits="DJJKBudgettingProject.SecurePages.CreateBudget" %>
 
 
+
 <asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">DJJK Budgeting - Manage Budgets</asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Dashboard: Manage Budgets</asp:Content>
@@ -24,11 +25,6 @@
                         <div class="mdl-card__supporting-text">
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <div class="mdl-cell mdl-cell--12-col">
-                                        <asp:ListBox ID="categories" runat="server" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
-                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]">
-                                        </asp:SqlDataSource>
-                                    </div>
 
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
                                         <asp:TextBox ID="txtName" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
@@ -77,8 +73,8 @@
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
                                     <div class="mdl-cell mdl-cell--12-col">
-                                        <p>Categories</p>
-                                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="DataSourceBudgetList" DataTextField="name" DataValueField="budgetid" AutoPostBack="True">
+                                        <p>Choose Budget</p>
+                                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="DataSourceBudgetList" DataTextField="name" DataValueField="budgetid" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Budget] WHERE ([userid] = @userid)">
                                             <SelectParameters>
@@ -87,31 +83,59 @@
                                         </asp:SqlDataSource>
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                         <p>Budget Name</p>
                                         <asp:TextBox ID="TextBox1" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-                                        <label class="mdl-textfield__label" for="ContentBody_TextBox1">Budget Name</label>
+                                       
                                     </div>
 
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                        <p>Description</p>
                                         <asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine" CssClass="mdl-textfield__input"></asp:TextBox>
-                                        <label class="mdl-textfield__label" for="ContentBody_TextBox3">Description</label>
                                     </div>
 
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                        <p>Savings</p>
                                         <asp:TextBox ID="TextBox4" runat="server" CssClass="mdl-textfield__input"></asp:TextBox>
-                                        <label class="mdl-textfield__label" for="ContentBody_TextBox4">Amount</label>
+                                    </div>
+
+                                    
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                         <p>Budget Start</p>                                       
+                                         <asp:Calendar ID="upCalendar1" runat="server"></asp:Calendar>
+                                    </div>
+
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                        <p>Budget End</p>
+                                        <asp:Calendar ID="upCalendar2" runat="server"></asp:Calendar>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col">
                                         <asp:Label ID="Label2" runat="server"></asp:Label>
                                     </div>
                                 </div>
+
+                                <div class="mdl-card__actions mdl-card--border">
+                                    <asp:Button CssClass="mdl-button" ID="updateBtn" runat="server" Text="Update!" OnClick="btnUpdate_Click" />
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--12-col">
+                                        <p>Categories</p>
+                                        <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
+                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]">
+                                        </asp:SqlDataSource>
+                                        
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                        <asp:Button CssClass="mdl-button" ID="Button2" runat="server" Text="Add Category!" OnClick="btnAddCategory_Click" />
+                                    </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <asp:Label ID="Label3" runat="server"></asp:Label>
+                                </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <asp:Button CssClass="mdl-button" ID="updateBtn" runat="server" Text="Update!" OnClick="btnUpdate_Click" />
-                        </div>
                     </div>
                 </div>
+                    </div>
     </div>
 
     <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-layout__tab-panel" id="delete">

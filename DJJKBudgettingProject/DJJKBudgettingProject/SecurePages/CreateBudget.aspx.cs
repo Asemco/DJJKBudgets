@@ -47,9 +47,15 @@ namespace DJJKBudgettingProject.SecurePages
                         {
                             int result = budget.InsertBudget();
                             if (result > 0)
+                            {
+                               budget.BudgetId = result;
                                 lblResult.Text = "Budget inserted correctly!";
-                            else
-                                lblResult.Text = "Budget was not inserted.";
+                            }
+                        else
+                        {
+                            lblResult.Text = "Budget was not inserted.";
+                        }
+                    
                         }
                         else
                         {
@@ -76,13 +82,18 @@ namespace DJJKBudgettingProject.SecurePages
         {
             Budget budget = new Budget();
             budget.UserId = (int)Session["userid"];
-            budget.Name = txtName.Text.Trim();
-            budget.Description = txtDescription.Text.Trim();
-            budget.Start_Date = calendarStart.SelectedDate.ToShortDateString();
-            budget.End_Date = calendarEnd.SelectedDate.ToShortDateString();
+            budget.Name = TextBox1.Text.Trim();
+            budget.Description = TextBox3.Text.Trim();
+            budget.Start_Date = upCalendar1.SelectedDate.ToShortDateString();
+            budget.End_Date = upCalendar2.SelectedDate.ToShortDateString();
             try
             {
-                budget.Saving = Convert.ToDecimal(txtSave.Text);
+                Console.WriteLine("WOORKS");
+                budget.Saving = Math.Round(Convert.ToDecimal(TextBox4.Text), 2);
+                
+                budget.UpdateBudget();
+                Label2.Text = "Updated Record.";
+                Label2.ForeColor = System.Drawing.Color.Green;
             }
             catch (Exception excep)
             {
@@ -94,9 +105,36 @@ namespace DJJKBudgettingProject.SecurePages
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("wow");
             Budget budget = new Budget();
             budget.BudgetId = Convert.ToInt32(DropDownList1.SelectedValue);
             budget.DeleteBudget();
+        }
+        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Budget budget = new Budget();
+            budget.BudgetId = Convert.ToInt32(DropDownList2.SelectedValue);
+            budget = budget.GetBudgetById();
+            TextBox1.Text = budget.Name;
+            TextBox3.Text = budget.Description;
+            TextBox4.Text = budget.Saving.ToString();
+            upCalendar1.TodaysDate = DateTime.Parse(budget.Start_Date);
+            upCalendar2.TodaysDate = DateTime.Parse(budget.End_Date);
+        }
+        protected void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            Budget budget = new Budget();
+            budget.BudgetId = Convert.ToInt32(DropDownList2.SelectedValue);
+            if(budget.InsertBudgetCategory(Convert.ToInt32(ListBox1.SelectedValue)) > 0)
+            {
+                Label3.Text = "Successfully added category";
+                Label3.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                Label3.Text = "Failed to add category";
+                Label3.ForeColor = System.Drawing.Color.Red;
+            }
         }
     }
 }

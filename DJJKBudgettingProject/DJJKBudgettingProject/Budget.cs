@@ -30,9 +30,9 @@ namespace DJJKBudgettingProject
             UserId = Convert.ToInt32(temp["userid"].ToString());
             Name = temp["name"].ToString();
             Description = temp["description"].ToString();
-            Saving = Convert.ToDecimal(temp["amount"].ToString());
-            Start_Date = temp["datespent"].ToString();
-            End_Date = temp["categoryid"].ToString();
+            Saving = Convert.ToDecimal(temp["saving"].ToString());
+            Start_Date = temp["start_date"].ToString();
+            End_Date = temp["end_date"].ToString();
             return this;
         }
 
