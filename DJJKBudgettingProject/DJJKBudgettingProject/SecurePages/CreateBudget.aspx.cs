@@ -33,6 +33,7 @@ namespace DJJKBudgettingProject.SecurePages
             catch (Exception excep)
             {
                 lblResult.Text = "Incorrect savings amount!  Please enter how much you'd like to save as a number.";
+                lblResult.ForeColor = System.Drawing.Color.Red;
                 return;
             }
 
