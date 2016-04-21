@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
 
-    <link href="_css/material-common.css" rel="stylesheet" />
+    <link href="/_css/material-common.css" rel="stylesheet" />
 
-    <script src="_js/loginmessage.js"></script>
+    <script src="/_js/loginmessage.js"></script>
 </head>
 <body id="PageBody" runat="server">
     <form id="form1" runat="server">
