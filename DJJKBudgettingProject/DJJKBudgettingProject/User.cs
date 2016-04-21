@@ -34,6 +34,31 @@ namespace DJJKBudgettingProject
                 return false;
         }
 
+        public User GetUserById()
+        {
+            DBFactory.Users dbfu = new DBFactory.Users();
+            DataRow temp = dbfu.GetUserById(UserId);
+            Username = temp["username"].ToString();
+            Password = temp["password"].ToString();
+            Email = temp["Email"].ToString();
+            FirstName = temp["FirstName"].ToString();
+            LastName = temp["LastName"].ToString();
+            Salt = temp["Salt"].ToString();
+            try {
+                Income = Convert.ToDecimal(temp["Income"].ToString());
+            } catch (FormatException e)
+            {
+                Income = 0;
+            }
+            try {
+                PayFrequency = Convert.ToInt32(temp["PayFrequency"].ToString());
+            } catch (FormatException e)
+            {
+                PayFrequency = 0;
+            }
+            return this;
+        }
+
         public int LoginUser()
         {
             DBFactory.Users dbfu = new DBFactory.Users();

@@ -24,8 +24,6 @@ namespace DJJKBudgettingProject
                 user.Email = txtEmail.Text;
                 user.FirstName = txtFirstName.Text;
                 user.LastName = txtLastName.Text;
-                user.Question = txtQuestion.Text;
-                user.Answer = txtAnswer.Text;
 
                 try
                 {

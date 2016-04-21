@@ -52,7 +52,6 @@
                 </div>
                 <asp:ContentPlaceHolder ID="ExtraHeaders" runat="server"></asp:ContentPlaceHolder>
             </header>
-
             <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <div class="demo-avatar-dropdown">
@@ -61,12 +60,14 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link mdl-navigation__link--current" href="/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">chrome_reader_mode</i>Dashboard</a>
+                    <a class="mdl-navigation__link mdl-navigation__link--current" href="/SecurePages/Dashboard.aspx"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">chrome_reader_mode</i>Dashboard</a>
                     <asp:LinkButton ID="linklogout" runat="server" CssClass="mdl-navigation__link" OnClick="linklogout_Click"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i>Logout</asp:LinkButton>
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+
+
+            <main class="mdl-layout__content mdl-color--grey-100" style="padding:0">
                 <div class="mdl-grid demo-content">
                     <asp:ContentPlaceHolder ID="ContentBody" runat="server"></asp:ContentPlaceHolder>
                 </div>
