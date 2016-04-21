@@ -18,27 +18,40 @@ namespace DJJKBudgettingProject
 
         public DataSet GetBudgets()
         {
-            return DBFactory.Budgets.GetBudgets(UserId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.GetBudgets(UserId);
         }
 
-        public DataRow GetBudgetById()
+        public Budget GetBudgetById()
         {
-            return DBFactory.Budgets.GetBudgetById(BudgetId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            DataRow temp = dbfb.GetBudgetById(BudgetId);
+            BudgetId = Convert.ToInt32(temp["budgetid"].ToString());
+            UserId = Convert.ToInt32(temp["userid"].ToString());
+            Name = temp["name"].ToString();
+            Description = temp["description"].ToString();
+            Saving = Convert.ToDecimal(temp["amount"].ToString());
+            Start_Date = temp["datespent"].ToString();
+            End_Date = temp["categoryid"].ToString();
+            return this;
         }
 
         public int InsertBudget()
         {
-            return DBFactory.Budgets.InsertBudget(this);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.InsertBudget(this);
         }
 
         public int UpdateBudget()
         {
-            return DBFactory.Budgets.UpdateBudget(this);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.UpdateBudget(this);
         }
 
         public int DeleteBudget()
         {
-            return DBFactory.Budgets.DeleteBudget(BudgetId);
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.DeleteBudget(BudgetId);
         }
     }
 }

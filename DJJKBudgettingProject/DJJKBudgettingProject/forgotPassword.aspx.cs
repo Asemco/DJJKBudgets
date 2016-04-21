@@ -25,7 +25,7 @@ namespace DJJKBudgettingProject
                     User user = new User();
                     user.Username = txtUsername.Text;
                     user.Password = txtPassword.Text;
-                    if (DBFactory.Users.UpdateUserPassword(user) > 0)
+                    if (user.UpdateUserPassword() > 0)
                     {
                         lblResult.Text = "Successfully reset password!";
                         lblResult.ForeColor = System.Drawing.Color.Green;
@@ -52,7 +52,9 @@ namespace DJJKBudgettingProject
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {
-            string question = DBFactory.Users.GetSecretQuestion(txtUsername.Text);
+            User user = new User();
+            user.Username = txtUsername.Text.Trim();
+            string question = user.GetSecretQuestion();
             if (question != null)
             {
                 lblQuestion.Text = question;

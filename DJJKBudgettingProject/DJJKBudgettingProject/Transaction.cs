@@ -18,27 +18,40 @@ namespace DJJKBudgettingProject
 
         public DataSet GetTransactions()
         {
-            return DBFactory.Transactions.GetTransactions(UserId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.GetTransactions(UserId);
         }
 
-        public DataRow GetTransactionById()
+        public Transaction GetTransactionById(int transactionId)
         {
-            return DBFactory.Transactions.GetTransactionById(TransactionId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            DataRow temp = dbft.GetTransactionById(transactionId);
+            TransactionId = Convert.ToInt32(temp["transactionid"].ToString());
+            UserId = Convert.ToInt32(temp["userid"].ToString());
+            CategoryId = Convert.ToInt32(temp["categoryid"].ToString());
+            Name = temp["name"].ToString();
+            Description = temp["description"].ToString();
+            Amount = Convert.ToDecimal(temp["amount"].ToString());
+            DateSpent = temp["datespent"].ToString();
+            return this;
         }
 
         public int InsertTransaction()
         {
-            return DBFactory.Transactions.InsertTransaction(this);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.InsertTransaction(this);
         }
 
         public int UpdateTransaction()
         {
-            return DBFactory.Transactions.UpdateTransaction(this);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.UpdateTransaction(this);
         }
 
         public int DeleteTransaction()
         {
-            return DBFactory.Transactions.DeleteTranscation(TransactionId);
+            DBFactory.Transactions dbft = new DBFactory.Transactions();
+            return dbft.DeleteTranscation(TransactionId);
         }
     }
 }

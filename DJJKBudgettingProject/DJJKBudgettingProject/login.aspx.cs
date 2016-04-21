@@ -17,16 +17,17 @@ namespace DJJKBudgettingProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
-            if (username.Length > 0 && password.Length > 0)
+            User user = new User();
+            user.Username = txtUsername.Text.Trim();
+            user.Password = txtPassword.Text.Trim();
+            if (user.Username.Length > 0 && user.Password.Length > 0)
             {
-                int userid = DBFactory.Users.LoginUser(username, password);
+                int userid = user.LoginUser();
                 if (userid > 0)
                 {
-                    Session["username"] = username;
+                    Session["username"] = user.Username;
                     Session["userid"] = userid;
-                    FormsAuthentication.RedirectFromLoginPage(username, false);
+                    FormsAuthentication.RedirectFromLoginPage(user.Username, false);
                 }
                 else
                 {
