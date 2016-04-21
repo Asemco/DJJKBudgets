@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/material.Master" Inherits="DJJKBudgettingProject.SecurePages.CreateBudget" %>
 <%@ Register src="../UserControls/HeaderUserControl.ascx" tagname="HeaderUserControl" tagprefix="uc1" %>
-<script runat="server">
-</script>
 
 
 <asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">DJJK Budgeting - Manage Budgets</asp:Content>
@@ -27,9 +25,13 @@
                     <h2 class="mdl-card__title-text">Create Transaction</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
+
                     <asp:ListBox ID="ListBox1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
-                    <br />
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [budgetid], [name] FROM [Budget] WHERE ([userid] = @userid)">
+                        <SelectParameters>
+                            <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="usersid" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
                     Budget Name:
                     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                     <br />
@@ -39,8 +41,6 @@
                     <br />
                     Budget Start Date:<asp:Calendar ID="calendarStart" runat="server"></asp:Calendar>
 
-       
-    
                     <br />
                     Budget End Date:
                     <asp:Calendar ID="calendarEnd" runat="server"></asp:Calendar>
@@ -60,7 +60,11 @@
                 </div>
                 <div class="mdl-card__supporting-text">
                     <asp:ListBox ID="ListBox2" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [budgetid], [userid] FROM [Budget] WHERE ([userid] = @userid)">
+                        <SelectParameters>
+                            <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
                     <br />
                     Transaction Name:
                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -68,11 +72,7 @@
                      Description:<asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine"></asp:TextBox>
                     <br />
                     Amount:<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Button ID="Button2" runat="server" Text="Create!" OnClick="btnCreate_Click" />
+                    <asp:Button ID="updateBtn" runat="server" Text="Update!" OnClick="btnUpdate_Click" />
                     <br />
                     <asp:Label ID="Label2" runat="server"></asp:Label>
                 </div>
@@ -85,21 +85,14 @@
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Update Budget</h2>
                 </div>
-                <div class="mdl-card__supporting-text">
-                    <asp:ListBox ID="ListBox3" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="categoryname" DataValueField="categoryid"></asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
-                    <br />
-                    What Would You Like To Remove
-                    <br />
-                    Budget Name:
-                    <asp:DropDownList ID="DropDownList1" runat="server">
-                    </asp:DropDownList>
-                    <br />
-                    Budget Description:<asp:TextBox ID="TextBox5" runat="server" TextMode="MultiLine"></asp:TextBox>
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Button ID="Button1" runat="server" Text="Delete!" OnClick="btnCreate_Click" />
+                <div class="mdl-card__supporting-text mdl-cell--12-col">
+                    <asp:DropDownList ID="DropDownList1" DataSourceID="DataSourceBudgetList" DataTextField="name" DataValueField="budgetid" runat="server" AutoPostBack="True"></asp:DropDownList>
+                    <asp:SqlDataSource ID="DataSourceBudgetList" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT * FROM [Budget] WHERE ([userid] = @userid)">
+                        <SelectParameters>
+                            <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:Button ID="Button1" runat="server" Text="Delete!" OnClick="btnDelete_Click" />
                     <br />
                     <asp:Label ID="Label1" runat="server"></asp:Label>
                 </div>
