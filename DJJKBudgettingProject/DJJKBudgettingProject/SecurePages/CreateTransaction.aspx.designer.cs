@@ -67,15 +67,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarCreateDateSpent;
         
         /// <summary>
-        /// btnCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
-        
-        /// <summary>
         /// lblCreateResult control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace DJJKBudgettingProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreateResult;
+        
+        /// <summary>
+        /// btnCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreate;
         
         /// <summary>
         /// liBoxUpdateTransactions control.
@@ -148,15 +148,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarUpdateDateSpent;
         
         /// <summary>
-        /// btnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
         /// lblUpdateResult control.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,15 @@ namespace DJJKBudgettingProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUpdateResult;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
         /// liBoxDeleteTransactions control.
@@ -220,15 +220,6 @@ namespace DJJKBudgettingProject {
         protected global::System.Web.UI.WebControls.Calendar calendarDeleteDateSpent;
         
         /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
         /// lblDeleteResult control.
         /// </summary>
         /// <remarks>
@@ -236,5 +227,14 @@ namespace DJJKBudgettingProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDeleteResult;
+        
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }
