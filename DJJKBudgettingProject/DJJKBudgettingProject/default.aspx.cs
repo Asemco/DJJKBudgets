@@ -18,7 +18,8 @@ namespace DJJKBudgettingProject
             }
             else
             {
-                
+                // Redirect to the real dashboard.
+                Response.Redirect("SecurePages/Dashboard.aspx");
             }
         }
     }

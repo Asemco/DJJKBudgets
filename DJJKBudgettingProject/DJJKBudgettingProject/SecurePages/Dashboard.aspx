@@ -1,69 +1,71 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="FormsAuthenticationExample.SecurePages.Dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/material.Master" CodeBehind="Dashboard.aspx.cs" Inherits="FormsAuthenticationExample.SecurePages.Dashboard" %>
 
-<%@ Register src="../UserControls/HeaderUserControl.ascx" tagname="HeaderUserControl" tagprefix="uc1" %>
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">DJJK Budgeting - Overview</asp:Content>
 
-<!DOCTYPE html>
+<asp:Content ContentPlaceHolderID="ContentTitlePlaceHolder" runat="server">Dashboard: Overview</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <uc1:HeaderUserControl ID="HeaderUserControl1" runat="server" />
+<asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+    <div class="mdl-grid mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Savings</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-typography--text-center">
+                <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1">
+                    <Series>
+                        <asp:Series Name="Series1" XValueMember="name" YValueMembers="saving">
+                        </asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [userid], [name], [saving] FROM [Budget]"></asp:SqlDataSource>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Spending</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-typography--text-center">
+                <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2">
+                    <Series>
+                        <asp:Series ChartType="Point" Name="Series1" XValueMember="datespent" YValueMembers="amount">
+                        </asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [description], [amount], [datespent], [categoryid] FROM [Transactions]"></asp:SqlDataSource>
+            </div>
+        </div>
     </div>
-        <h2>
-        <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
-            Welcome to My Dashboard.</h2>
-        What You Are Saving For<br />
-        <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" Height="291px">
-            <Series>
-                <asp:Series Name="Series1" XValueMember="name" YValueMembers="saving">
-                </asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1">
-                </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [userid], [name], [saving] FROM [Budget]"></asp:SqlDataSource>
-        <br />
-        Lets See Your Spending<br />
-        <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2">
-            <Series>
-                <asp:Series ChartType="Point" Name="Series1" XValueMember="datespent" YValueMembers="amount">
-                </asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1">
-                </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [description], [amount], [datespent], [categoryid] FROM [Transactions]"></asp:SqlDataSource>
-        <br />
-        <br />
-        Most Categories Cost<br />
-        <br />
-        <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3">
-            <Series>
-                <asp:Series ChartType="Pyramid" Name="Series1" XValueMember="categoryname" YValueMembers="categoryid">
-                </asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1">
-                </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [categoryid], [categoryname] FROM [Category]"></asp:SqlDataSource>
-        <br />
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            <asp:Button ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Work On Budget" PostBackUrl="~/SecurePages/CreateBudget.aspx" />
-        </p>
-    </form>
-</body>
-</html>
+    <div class="mdl-grid mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Categories</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-typography--text-center">
+                <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3">
+                    <Series>
+                        <asp:Series ChartType="Pyramid" Name="Series1" XValueMember="categoryname" YValueMembers="categoryid">
+                        </asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [categoryid], [categoryname] FROM [Category]"></asp:SqlDataSource>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdl-grid mdl-cell--12-col">
+        <asp:Button CssClass="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--primary" ID="btnCreateBudget" runat="server" OnClick="btnCreateBudget_Click" Text="Work On Budget" PostBackUrl="~/SecurePages/CreateBudget.aspx" />
+    </div>
+</asp:Content>
