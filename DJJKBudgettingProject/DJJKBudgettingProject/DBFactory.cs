@@ -390,7 +390,22 @@ namespace DJJKBudgettingProject
 
                 return 0;
             }
-        }
+
+            public int InsertBudgetCategory(Budget budget,int categoryID)
+            {
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    string query1 = "INSERT INTO BudgetCategories VALUES(@budgetid,@categoryID)";
+                    conn.Open();
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    cmd1.Parameters.AddWithValue("@budgetid", budget.BudgetId);
+                    cmd1.Parameters.AddWithValue("@categoryID", categoryID);
+                    cmd1.ExecuteNonQuery();
+                    return cmd1.ExecuteNonQuery();
+                }
+
+                return 0;
+            }
 
         /////////////////////* TRANSACTION METHODS */
         public class Transactions

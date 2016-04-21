@@ -53,5 +53,10 @@ namespace DJJKBudgettingProject
             DBFactory.Budgets dbfb = new DBFactory.Budgets();
             return dbfb.DeleteBudget(BudgetId);
         }
+        public int InsertBudgetCategory(int categoryid)
+        {
+            DBFactory.Budgets dbfb = new DBFactory.Budgets();
+            return dbfb.InsertBudgetCategory(this, categoryid);
+        }
     }
 }
