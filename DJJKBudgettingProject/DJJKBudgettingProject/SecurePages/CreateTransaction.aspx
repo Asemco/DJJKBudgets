@@ -42,11 +42,17 @@
                     <asp:ListItem>Delete Transaction</asp:ListItem>
                     <asp:ListItem>Create New Transaction</asp:ListItem>
                 </asp:DropDownList>
+                
+                
                 <br />
 
      </div >    
-            
-     <div runat="server" id="MyDiv" >
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+       <asp:UpdatePanel ID="UpdatePanel1" runat="server">    
+           <ContentTemplate>
+        <div runat="server" id="MyDiv" >
+        
          Add A Transaction!<br />
          Name:
         <asp:TextBox ID="txtCreateName" runat="server"></asp:TextBox>
@@ -60,7 +66,7 @@
          Cost ($):<asp:TextBox ID="txtCreateAmount" runat="server"></asp:TextBox>
         <br />
          Spent on:<asp:Calendar ID="calendarCreateDateSpent" runat="server"></asp:Calendar>
-
+             
        
     
         <br />
@@ -69,6 +75,8 @@
         <asp:Label ID="lblCreateResult" runat="server"></asp:Label>
 
      </div>
+               </ContentTemplate>  
+           </asp:UpdatePanel>
 
         <div runat="server" id="MyDiv2" >
             Update A Transaction!<br />
@@ -85,7 +93,7 @@
                 Description:<asp:TextBox ID="txtUpdateDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
         <br />
                 Category:
-            <asp:ListBox ID="liBoxUpdateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxCreateCategories_DataBound" Width="187px"></asp:ListBox>
+            <asp:ListBox ID="liBoxUpdateCategories" runat="server" DataSourceID="Categories" DataTextField="categoryname" DataValueField="categoryid" OnDataBound="liBoxUpdateCategories_DataBound" Width="187px"></asp:ListBox>
             <br />
                 Cost ($):<asp:TextBox ID="txtUpdateAmount" runat="server"></asp:TextBox>
                 <br />

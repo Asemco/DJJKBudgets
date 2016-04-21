@@ -76,10 +76,16 @@ namespace DJJKBudgettingProject
             liBoxCreateCategories.Items.Insert(0, listItem);
         }
 
+        protected void liBoxUpdateCategories_DataBound(object sender, EventArgs e)
+        {
+            ListItem listItem = new ListItem("Select a Category", "-1");
+            liBoxUpdateCategories.Items.Insert(0, listItem);
+        }
+
         protected void liBoxUpdateTransactions_DataBound(object sender, EventArgs e)
         {
             ListItem listItem = new ListItem("Select a Transaction", "-1");
-            liBoxUpdateCategories.Items.Insert(0, listItem);
+            liBoxUpdateTransactions.Items.Insert(0, listItem);
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
