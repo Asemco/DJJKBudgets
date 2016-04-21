@@ -62,7 +62,7 @@ namespace DJJKBudgettingProject.SecurePages
                     {
                         if (user.UpdateUser() > 0)
                         {
-                            lblUpdateResult.Text += "Profile Updated" + user.FirstName;
+                            lblUpdateResult.Text += "Profile Updated";
                             lblUpdateResult.ForeColor = System.Drawing.Color.Green;
                         }
                         else
