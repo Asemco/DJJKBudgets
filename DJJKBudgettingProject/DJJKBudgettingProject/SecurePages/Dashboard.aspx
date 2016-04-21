@@ -11,17 +11,23 @@
                 <h2 class="mdl-card__title-text">Savings</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1">
+                <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" Palette="SeaGreen">
                     <Series>
-                        <asp:Series Name="Series1" XValueMember="name" YValueMembers="saving">
+                        <asp:Series Name="Series1" XValueMember="name" YValueMembers="saving" MarkerStyle="Diamond">
                         </asp:Series>
                     </Series>
                     <ChartAreas>
                         <asp:ChartArea Name="ChartArea1">
+                            <AxisX Interval="2"> </AxisX>
+                            <AxisY Interval="1000"> </AxisY>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [userid], [name], [saving] FROM [Budget]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [name], [saving] FROM [Budget] WHERE ([userid] = @userid)">
+                    <SelectParameters>
+                        <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </div>
         </div>
 
@@ -30,17 +36,22 @@
                 <h2 class="mdl-card__title-text">Spending</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2">
+                <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2" Palette="Fire">
                     <Series>
-                        <asp:Series ChartType="Point" Name="Series1" XValueMember="datespent" YValueMembers="amount">
+                        <asp:Series Name="Series1" XValueMember="name" YValueMembers="Amount" YValuesPerPoint="2" MarkerStyle="Diamond">
                         </asp:Series>
                     </Series>
                     <ChartAreas>
                         <asp:ChartArea Name="ChartArea1">
+                            <AxisX Interval="2"> </AxisX>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT [description], [amount], [datespent], [categoryid] FROM [Transactions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:cs_Budget %>" SelectCommand="SELECT Budget.name, SUM(Transactions.amount) AS Amount FROM Budget INNER JOIN BudgetCategories ON Budget.budgetid = BudgetCategories.budgetid INNER JOIN Transactions ON BudgetCategories.categoryid = Transactions.categoryid INNER JOIN Users ON Budget.userid = Users.userid AND Transactions.userid = Users.userid WHERE (Users.userid = @userid) GROUP BY Budget.name ORDER BY Budget.name">
+                    <SelectParameters>
+                        <asp:SessionParameter DefaultValue="0" Name="userid" SessionField="userid" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </div>
         </div>
     </div>
@@ -50,13 +61,14 @@
                 <h2 class="mdl-card__title-text">Categories</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3">
+                <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3" IsMapEnabled="True">
                     <Series>
-                        <asp:Series ChartType="Pyramid" Name="Series1" XValueMember="categoryname" YValueMembers="categoryid">
+                        <asp:Series ChartType="Doughnut" Name="Series1" XValueMember="categoryname" YValueMembers="categoryid" YValuesPerPoint="6">
                         </asp:Series>
                     </Series>
                     <ChartAreas>
-                        <asp:ChartArea Name="ChartArea1">
+                        <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="True" BackGradientStyle="None">
+                            <AxisX Interval="1" LabelAutoFitStyle="IncreaseFont, DecreaseFont, StaggeredLabels, LabelsAngleStep45, WordWrap"> </AxisX>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
