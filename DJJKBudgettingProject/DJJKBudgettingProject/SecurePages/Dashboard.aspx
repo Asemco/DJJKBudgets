@@ -67,10 +67,9 @@
                         </asp:Series>
                     </Series>
                     <ChartAreas>
-                        <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="True" BackGradientStyle="None">
+                        <asp:ChartArea Name="ChartArea1" BackGradientStyle="None">
                             <AxisX Interval="1" LabelAutoFitStyle="IncreaseFont, DecreaseFont, StaggeredLabels, LabelsAngleStep45, WordWrap"> </AxisX>
                             <AxisY Enabled="True"></AxisY>
-<Area3DStyle Enable3D="True"></Area3DStyle>
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>

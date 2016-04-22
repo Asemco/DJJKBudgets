@@ -18,6 +18,7 @@ namespace FormsAuthenticationExample.SecurePages
                 //ListItem listItem = new ListItem("Select a Budget", "-1");
                 //listBoxBudgets.Items.Insert(0, listItem);
             }
+
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
