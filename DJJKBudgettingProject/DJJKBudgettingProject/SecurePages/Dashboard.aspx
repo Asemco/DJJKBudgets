@@ -11,7 +11,7 @@
                 <h2 class="mdl-card__title-text">Savings</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-typography--text-center">
-                <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" Palette="SeaGreen">
+                <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" Palette="Green">
                     <Series>
                         <asp:Series Name="Series1" XValueMember="name" YValueMembers="saving" MarkerStyle="Diamond">
                         </asp:Series>
